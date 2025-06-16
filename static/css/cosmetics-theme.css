@@ -1,79 +1,118 @@
-/* Cosmetics Store Theme Variables */
+/* Professional Cosmetics Store Theme Variables */
 :root {
-    --cosmetics-pink: #ff6b9d;
-    --cosmetics-rose-gold: #e8b4b8;
-    --cosmetics-gold: #ffd700;
-    --cosmetics-nude: #f5f0e8;
-    --cosmetics-charcoal: #2c2c2c;
-    --cosmetics-light-pink: #ffb3d1;
-    --cosmetics-cream: #faf8f3;
-    --cosmetics-blush: #ffc0cb;
+    /* Primary Colors - Sophisticated & Readable */
+    --cosmetics-primary: #b85a72;          /* Sophisticated dusty rose */
+    --cosmetics-primary-dark: #8a4a5c;     /* Deep rose for emphasis */
+    --cosmetics-primary-light: #d4a6b4;    /* Light rose for subtle accents */
+    
+    /* Metallic Accents - Elegant & Professional */
+    --cosmetics-rose-gold: #d4a574;        /* Warm, elegant rose gold */
+    --cosmetics-copper: #c29166;           /* Rich copper accent */
+    --cosmetics-champagne: #f0e6d6;        /* Soft champagne */
+    
+    /* Neutrals - Perfect Contrast */
+    --cosmetics-cream: #fefbf7;            /* Warm white background */
+    --cosmetics-soft-gray: #f5f3f1;        /* Subtle background */
+    --cosmetics-light-gray: #e8e6e4;       /* Border color */
+    --cosmetics-charcoal: #2d2d2d;         /* Dark text - excellent contrast */
+    --cosmetics-text-secondary: #5a5a5a;   /* Secondary text */
+    
+    /* Gradients - Subtle & Professional */
+    --gradient-primary: linear-gradient(135deg, #b85a72, #d4a6b4);
+    --gradient-accent: linear-gradient(135deg, #d4a574, #f0e6d6);
+    --gradient-background: linear-gradient(135deg, #fefbf7, #f5f3f1);
 }
 
 /* Global Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--cosmetics-cream);
     color: var(--cosmetics-charcoal);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif !important;
 }
 
 /* Navigation Styles */
 .cosmetics-nav {
-    background: linear-gradient(135deg, var(--cosmetics-nude), var(--cosmetics-rose-gold));
-    border-bottom: 3px solid var(--cosmetics-gold);
-    box-shadow: 0 2px 10px rgba(232, 180, 184, 0.3);
+    background: var(--gradient-background);
+    border-bottom: 2px solid var(--cosmetics-rose-gold);
+    box-shadow: 0 2px 15px rgba(180, 90, 114, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .cosmetics-nav .navbar-brand {
-    color: var(--cosmetics-charcoal) !important;
+    color: var(--cosmetics-primary-dark) !important;
     font-weight: 700;
     font-size: 1.5rem;
+    letter-spacing: -0.5px;
 }
 
 .cosmetics-nav .nav-link {
     color: var(--cosmetics-charcoal) !important;
-    font-weight: 600;
-    padding: 0.5rem 1rem !important;
-    border-radius: 20px;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 25px;
     transition: all 0.3s ease;
-    margin: 0 0.2rem;
+    margin: 0 0.25rem;
+    position: relative;
 }
 
 .cosmetics-nav .nav-link:hover,
 .cosmetics-nav .nav-link.active {
-    background: linear-gradient(135deg, var(--cosmetics-pink), var(--cosmetics-light-pink));
+    background: var(--gradient-primary);
     color: white !important;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(180, 90, 114, 0.3);
 }
 
 /* Color Utilities */
-.text-cosmetics-pink { color: var(--cosmetics-pink) !important; }
-.text-cosmetics-gold { color: var(--cosmetics-gold) !important; }
+.text-cosmetics-primary { color: var(--cosmetics-primary) !important; }
+.text-cosmetics-primary-dark { color: var(--cosmetics-primary-dark) !important; }
 .text-cosmetics-rose-gold { color: var(--cosmetics-rose-gold) !important; }
-.bg-cosmetics-pink { background-color: var(--cosmetics-pink) !important; }
-.bg-cosmetics-nude { background-color: var(--cosmetics-nude) !important; }
+.text-cosmetics-copper { color: var(--cosmetics-copper) !important; }
+.text-cosmetics-charcoal { color: var(--cosmetics-charcoal) !important; }
+.bg-cosmetics-primary { background-color: var(--cosmetics-primary) !important; }
+.bg-cosmetics-champagne { background-color: var(--cosmetics-champagne) !important; }
+.bg-cosmetics-cream { background-color: var(--cosmetics-cream) !important; }
+
+/* Legacy compatibility */
+.text-cosmetics-pink { color: var(--cosmetics-primary) !important; }
+.text-cosmetics-gold { color: var(--cosmetics-rose-gold) !important; }
 
 /* Card Styles */
 .card-cosmetic {
-    border: 2px solid var(--cosmetics-rose-gold);
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(232, 180, 184, 0.2);
+    border: 1px solid var(--cosmetics-light-gray);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(180, 90, 114, 0.08);
     transition: all 0.3s ease;
-    background: white;
+    background: var(--cosmetics-cream);
     overflow: hidden;
 }
 
 .card-cosmetic:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
-    border-color: var(--cosmetics-pink);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(180, 90, 114, 0.15);
+    border-color: var(--cosmetics-primary);
 }
 
 .card-cosmetic .card-header {
-    background: linear-gradient(135deg, var(--cosmetics-nude), var(--cosmetics-rose-gold));
-    border-bottom: 2px solid var(--cosmetics-gold);
+    background: var(--gradient-accent);
+    border-bottom: 1px solid var(--cosmetics-light-gray);
     font-weight: 600;
     text-align: center;
+    color: var(--cosmetics-charcoal);
 }
 
 .card-cosmetic img {
@@ -86,67 +125,77 @@ body {
 
 /* Button Styles */
 .btn-cosmetics-primary {
-    background: linear-gradient(135deg, var(--cosmetics-pink), var(--cosmetics-light-pink));
+    background: var(--gradient-primary);
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     color: white;
-    padding: 12px 30px;
+    padding: 14px 32px;
     font-weight: 600;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+    box-shadow: 0 4px 15px rgba(180, 90, 114, 0.2);
+    letter-spacing: 0.3px;
 }
 
 .btn-cosmetics-primary:hover {
-    background: linear-gradient(135deg, var(--cosmetics-light-pink), var(--cosmetics-pink));
+    background: linear-gradient(135deg, var(--cosmetics-primary-dark), var(--cosmetics-primary));
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+    box-shadow: 0 8px 25px rgba(180, 90, 114, 0.3);
     color: white;
 }
 
 .btn-cosmetics-secondary {
-    background: linear-gradient(135deg, var(--cosmetics-gold), #ffed4e);
+    background: var(--gradient-accent);
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     color: var(--cosmetics-charcoal);
-    padding: 12px 30px;
+    padding: 14px 32px;
     font-weight: 600;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.2);
+    letter-spacing: 0.3px;
 }
 
 .btn-cosmetics-secondary:hover {
-    background: linear-gradient(135deg, #ffed4e, var(--cosmetics-gold));
+    background: linear-gradient(135deg, var(--cosmetics-copper), var(--cosmetics-rose-gold));
     transform: translateY(-2px);
-    color: var(--cosmetics-charcoal);
+    box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+    color: white;
 }
 
 .btn-cosmetics-danger {
-    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    background: linear-gradient(135deg, #dc3545, #e57373);
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     color: white;
-    padding: 12px 30px;
+    padding: 14px 32px;
     font-weight: 600;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+    letter-spacing: 0.3px;
 }
 
 .btn-cosmetics-danger:hover {
-    background: linear-gradient(135deg, #ff8e8e, #ff6b6b);
+    background: linear-gradient(135deg, #c82333, #dc3545);
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
     color: white;
 }
 
 /* Form Styles */
 .form-control:focus {
-    border-color: var(--cosmetics-pink);
-    box-shadow: 0 0 0 0.2rem rgba(255, 107, 157, 0.25);
+    border-color: var(--cosmetics-primary);
+    box-shadow: 0 0 0 0.2rem rgba(180, 90, 114, 0.15);
 }
 
 .form-cosmetic {
-    background: white;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(232, 180, 184, 0.2);
-    border: 2px solid var(--cosmetics-rose-gold);
+    background: var(--cosmetics-cream);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(180, 90, 114, 0.1);
+    border: 1px solid var(--cosmetics-light-gray);
 }
 
 /* Grid Layouts */
@@ -174,51 +223,141 @@ body {
 .page-header {
     text-align: center;
     margin-bottom: 3rem;
-    padding: 2rem 0;
-    background: linear-gradient(135deg, var(--cosmetics-nude), var(--cosmetics-cream));
-    border-radius: 20px;
-    border: 2px solid var(--cosmetics-rose-gold);
+    padding: 3rem 2rem;
+    background: var(--gradient-background);
+    border-radius: 16px;
+    border: 1px solid var(--cosmetics-light-gray);
+    box-shadow: 0 4px 20px rgba(180, 90, 114, 0.08);
 }
 
-.page-header h1 {
-    color: var(--cosmetics-charcoal);
+.page-header h1,
+.page-header h2 {
+    color: var(--cosmetics-primary-dark);
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
 }
 
 .page-header p {
-    color: var(--cosmetics-pink);
-    font-size: 1.2rem;
+    color: var(--cosmetics-text-secondary);
+    font-size: 1.1rem;
     margin-bottom: 0;
+    font-weight: 400;
 }
 
 /* Home Page Styles */
 .hero-section {
-    background: linear-gradient(135deg, var(--cosmetics-pink), var(--cosmetics-light-pink));
+    background: var(--gradient-primary);
     color: white;
-    padding: 4rem 0;
-    border-radius: 30px;
-    margin-bottom: 3rem;
+    padding: 5rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 4rem;
     text-align: center;
+    box-shadow: 0 8px 30px rgba(180, 90, 114, 0.2);
 }
 
 .hero-section h1 {
-    font-size: 3rem;
+    font-size: 3.2rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.hero-section .lead {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Carousel Styles */
 .carousel-item img {
     height: 400px;
     object-fit: cover;
     border-radius: 20px;
 }
 
+.carousel {
+    margin-bottom: 3rem;
+}
+
+.carousel-inner {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.carousel-item {
+    padding: 2rem;
+    min-height: 450px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 40px;
+    height: 40px;
+    color: var(--cosmetics-pink);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    opacity: 0.8;
+}
+
+.carousel-control-prev {
+    left: 2%;
+}
+
+.carousel-control-next {
+    right: 52%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--cosmetics-primary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-size: 60%;
+    box-shadow: 0 4px 15px rgba(180, 90, 114, 0.2);
+    transition: all 0.3s ease;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: var(--cosmetics-rose-gold);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
+}
+
+.carousel-indicators button {
+    background-color: var(--cosmetics-primary);
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active {
+    background-color: var(--cosmetics-rose-gold);
+    opacity: 1;
+    transform: scale(1.2);
+}
+
 /* Footer */
 .cosmetics-footer {
     background: linear-gradient(135deg, var(--cosmetics-charcoal), #3a3a3a);
     color: white;
-    border-top: 3px solid var(--cosmetics-gold);
+    border-top: 2px solid var(--cosmetics-rose-gold);
+    box-shadow: 0 -4px 20px rgba(180, 90, 114, 0.1);
 }
 
 /* Action Buttons */
@@ -250,6 +389,33 @@ body {
     .cosmetics-nav .navbar-nav {
         text-align: center;
     }
+    
+    .carousel-item {
+        padding: 1rem;
+        min-height: auto;
+    }
+    
+    .carousel-item .col-md-6 {
+        margin-bottom: 1rem;
+    }
+    
+    .carousel-item div[style*="height: 400px"] {
+        height: 250px !important;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-control-prev {
+        left: 5%;
+    }
+    
+    .carousel-control-next {
+        right: 5%;
+    }
 }
 
 /* Animation Classes */
@@ -264,26 +430,28 @@ body {
 
 /* Alert Styles */
 .alert-success {
-    background-color: rgba(255, 107, 157, 0.1);
-    border-color: var(--cosmetics-pink);
+    background-color: rgba(180, 90, 114, 0.1);
+    border-color: var(--cosmetics-primary);
     color: var(--cosmetics-charcoal);
+    border-radius: 12px;
 }
 
 .alert-warning {
-    background-color: rgba(255, 215, 0, 0.1);
-    border-color: var(--cosmetics-gold);
+    background-color: rgba(212, 165, 116, 0.1);
+    border-color: var(--cosmetics-rose-gold);
     color: var(--cosmetics-charcoal);
+    border-radius: 12px;
 }
 
 /* Product Price Display */
 .price-display {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--cosmetics-pink);
+    color: var(--cosmetics-primary);
 }
 
 .price-iva {
-    font-size: 0.9rem;
-    color: var(--cosmetics-gold);
-    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--cosmetics-text-secondary);
+    font-weight: 500;
 }
