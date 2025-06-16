@@ -12,6 +12,7 @@ dependencies = [
     "django==5.2.2",
     "psycopg2-binary>=2.9.0",
     "pillow>=10.0.0",
+    "gunicorn>=21.0.0",
 ]
 
 [project.optional-dependencies]
@@ -118,6 +119,9 @@ fail_under = 90
 [tool.bandit]
 exclude_dirs = ["tests", "migrations"]
 skips = ["B101", "B601"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["apps", "cosmeticos_store"]
 
 [build-system]
 requires = ["hatchling"]
