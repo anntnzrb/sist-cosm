@@ -1,0 +1,11 @@
+[project]
+name = "sist-cosm"
+version = "0.1.0"
+description = "xyz"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django==5.2.2",
+    "pillow>=11.2.1",
+    "psycopg2-binary>=2.9.10",
+]
