@@ -9,7 +9,7 @@ class ProveedorForm(forms.ModelForm):
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del proveedor'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Descripción del proveedor'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '+57 123 456 7890'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '+593 999 999 999'}),
             'pais': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'País de origen'}),
             'correo': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'proveedor@ejemplo.com'}),
             'direccion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Dirección completa'}),
