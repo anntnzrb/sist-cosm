@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Eliminar Producto - Cosmetics Store{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-trash me-3 text-cosmetics-danger"></i>ELIMINAR PRODUCTO</h1>
+    <p>Confirme la eliminación del producto cosmético</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-cosmetic">
+            <div class="card-header text-center bg-danger text-white">
+                <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación</h5>
+            </div>
+            
+            <div class="card-body text-center">
+                {% if object.imagen %}
+                    <img src="{{ object.imagen.url }}" alt="{{ object.nombre }}" class="img-thumbnail mb-3" style="max-width: 150px;">
+                {% else %}
+                    <i class="fas fa-palette text-cosmetics-pink fa-5x mb-3"></i>
+                {% endif %}
+                
+                <h4 class="text-cosmetics-charcoal">{{ object.nombre }}</h4>
+                <p class="text-muted">{{ object.descripcion|truncatewords:20 }}</p>
+                
+                <div class="price-display mb-3">
+                    ${{ object.precio }}
+                    {% if object.iva > 0 %}
+                        <br><small class="price-iva">IVA {{ object.iva }}% incluido</small>
+                    {% else %}
+                        <br><small class="price-iva">Exento de IVA</small>
+                    {% endif %}
+                </div>
+                
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>¡Atención!</strong> Esta acción no se puede deshacer. 
+                    Se eliminará permanentemente toda la información del producto.
+                </div>
+                
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-cosmetics-danger btn-lg me-3">
+                        <i class="fas fa-trash me-2"></i>Sí, Eliminar
+                    </button>
+                    <a href="{% url 'productos:list' %}" class="btn btn-cosmetics-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>Cancelar
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

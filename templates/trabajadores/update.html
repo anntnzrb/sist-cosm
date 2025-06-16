@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Trabajador - Cosmetics Store{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-user-edit me-3"></i>EDITAR TRABAJADOR</h1>
+    <p>Actualiza la información de {{ object.nombre }} {{ object.apellido }}</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="form-cosmetic">
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.nombre.id_for_label }}" class="form-label">
+                            <i class="fas fa-user me-2 text-cosmetics-pink"></i>{{ form.nombre.label }}
+                        </label>
+                        {{ form.nombre }}
+                        {% if form.nombre.errors %}
+                            <div class="text-danger mt-1">
+                                {% for error in form.nombre.errors %}
+                                    <small>{{ error }}</small><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.apellido.id_for_label }}" class="form-label">
+                            <i class="fas fa-user me-2 text-cosmetics-pink"></i>{{ form.apellido.label }}
+                        </label>
+                        {{ form.apellido }}
+                        {% if form.apellido.errors %}
+                            <div class="text-danger mt-1">
+                                {% for error in form.apellido.errors %}
+                                    <small>{{ error }}</small><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.correo.id_for_label }}" class="form-label">
+                        <i class="fas fa-envelope me-2 text-cosmetics-gold"></i>{{ form.correo.label }}
+                    </label>
+                    {{ form.correo }}
+                    {% if form.correo.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.correo.errors %}
+                                <small>{{ error }}</small><br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.cedula.id_for_label }}" class="form-label">
+                            <i class="fas fa-id-card me-2 text-cosmetics-rose-gold"></i>{{ form.cedula.label }}
+                        </label>
+                        {{ form.cedula }}
+                        {% if form.cedula.errors %}
+                            <div class="text-danger mt-1">
+                                {% for error in form.cedula.errors %}
+                                    <small>{{ error }}</small><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.codigo_empleado.id_for_label }}" class="form-label">
+                            <i class="fas fa-badge-check me-2 text-cosmetics-charcoal"></i>{{ form.codigo_empleado.label }}
+                        </label>
+                        {{ form.codigo_empleado }}
+                        {% if form.codigo_empleado.errors %}
+                            <div class="text-danger mt-1">
+                                {% for error in form.codigo_empleado.errors %}
+                                    <small>{{ error }}</small><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="{{ form.imagen.id_for_label }}" class="form-label">
+                        <i class="fas fa-camera me-2 text-cosmetics-pink"></i>{{ form.imagen.label }}
+                    </label>
+                    
+                    {% if object.imagen %}
+                        <div class="mb-2">
+                            <img src="{{ object.imagen.url }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 150px;">
+                            <small class="text-muted d-block">Imagen actual</small>
+                        </div>
+                    {% endif %}
+                    
+                    {{ form.imagen }}
+                    <div class="form-text">Formatos aceptados: JPG, PNG, GIF. Tamaño máximo: 5MB</div>
+                    {% if form.imagen.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.imagen.errors %}
+                                <small>{{ error }}</small><br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3">
+                        <i class="fas fa-save me-2"></i>Actualizar Trabajador
+                    </button>
+                    <a href="{% url 'trabajadores:list' %}" class="btn btn-cosmetics-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

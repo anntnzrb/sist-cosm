@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nuestro Personal - Cosmetics Store{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-users me-3"></i>NUESTRO PERSONAL</h1>
+    <p>Conoce a nuestro equipo de expertos en belleza y cosméticos</p>
+</div>
+
+<div class="text-center mb-4">
+    <a href="{% url 'trabajadores:create' %}" class="btn btn-cosmetics-primary btn-lg">
+        <i class="fas fa-plus me-2"></i>AGREGAR TRABAJADOR
+    </a>
+</div>
+
+{% if trabajadores %}
+    <div class="trabajadores-grid">
+        {% for trabajador in trabajadores %}
+            <div class="card card-cosmetic fade-in">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ trabajador.nombre }} {{ trabajador.apellido }}</h5>
+                </div>
+                
+                {% if trabajador.imagen %}
+                    <img src="{{ trabajador.imagen.url }}" alt="{{ trabajador.nombre }}" class="card-img-top">
+                {% else %}
+                    <div class="text-center py-5" style="background: linear-gradient(135deg, var(--cosmetics-nude), var(--cosmetics-rose-gold));">
+                        <i class="fas fa-user-circle text-cosmetics-pink fa-5x"></i>
+                    </div>
+                {% endif %}
+                
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong><i class="fas fa-envelope me-2 text-cosmetics-pink"></i>Email:</strong><br>
+                        {{ trabajador.correo }}
+                    </p>
+                    <p class="card-text">
+                        <strong><i class="fas fa-id-card me-2 text-cosmetics-gold"></i>Cédula:</strong><br>
+                        {{ trabajador.cedula }}
+                    </p>
+                    <p class="card-text">
+                        <strong><i class="fas fa-badge-check me-2 text-cosmetics-rose-gold"></i>Código:</strong><br>
+                        {{ trabajador.codigo_empleado }}
+                    </p>
+                    
+                    <div class="action-buttons mt-3">
+                        <a href="{% url 'trabajadores:update' trabajador.pk %}" class="btn btn-cosmetics-secondary btn-sm">
+                            <i class="fas fa-edit me-1"></i>Editar
+                        </a>
+                        <a href="{% url 'trabajadores:delete' trabajador.pk %}" class="btn btn-cosmetics-danger btn-sm" 
+                           data-confirm="¿Está seguro de eliminar a {{ trabajador.nombre }} {{ trabajador.apellido }}?">
+                            <i class="fas fa-trash me-1"></i>Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    {% if is_paginated %}
+        <nav aria-label="Paginación" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">Primera</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                    </li>
+                {% endif %}
+                
+                <li class="page-item active">
+                    <span class="page-link">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+                </li>
+                
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% else %}
+    <div class="text-center py-5">
+        <div class="card card-cosmetic" style="max-width: 500px; margin: 0 auto;">
+            <div class="card-body">
+                <i class="fas fa-users text-cosmetics-pink fa-4x mb-3"></i>
+                <h4 class="text-cosmetics-charcoal">No hay trabajadores registrados</h4>
+                <p class="text-muted">Comience agregando el primer miembro de su equipo</p>
+                <a href="{% url 'trabajadores:create' %}" class="btn btn-cosmetics-primary">
+                    <i class="fas fa-plus me-2"></i>Agregar Primer Trabajador
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

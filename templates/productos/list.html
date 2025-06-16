@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nuestros Productos - Cosmetics Store{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-shopping-bag me-3"></i>NUESTROS PRODUCTOS</h1>
+    <p>Descubre nuestra exclusiva gama de productos cosméticos de alta calidad</p>
+</div>
+
+<div class="text-center mb-4">
+    <a href="{% url 'productos:create' %}" class="btn btn-cosmetics-primary btn-lg">
+        <i class="fas fa-plus me-2"></i>AGREGAR PRODUCTO
+    </a>
+</div>
+
+{% if productos %}
+    <div class="productos-grid">
+        {% for producto in productos %}
+            <div class="card card-cosmetic fade-in">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ producto.nombre }}</h5>
+                </div>
+                
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="card-img-top">
+                {% else %}
+                    <div class="text-center py-5" style="background: linear-gradient(135deg, var(--cosmetics-nude), var(--cosmetics-rose-gold));">
+                        <i class="fas fa-palette text-cosmetics-pink fa-5x"></i>
+                    </div>
+                {% endif %}
+                
+                <div class="card-body">
+                    <p class="card-text text-muted">{{ producto.descripcion|truncatewords:15 }}</p>
+                    
+                    <div class="price-display text-center mb-3">
+                        ${{ producto.precio }}
+                        {% if producto.iva > 0 %}
+                            <br><small class="price-iva">IVA {{ producto.iva }}% incluido</small>
+                        {% else %}
+                            <br><small class="price-iva">Exento de IVA</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <a href="{% url 'productos:update' producto.pk %}" class="btn btn-cosmetics-secondary btn-sm">
+                            <i class="fas fa-edit me-1"></i>Editar
+                        </a>
+                        <a href="{% url 'productos:delete' producto.pk %}" class="btn btn-cosmetics-danger btn-sm"
+                           data-confirm="¿Está seguro de eliminar {{ producto.nombre }}?">
+                            <i class="fas fa-trash me-1"></i>Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="text-center py-5">
+        <div class="card card-cosmetic" style="max-width: 500px; margin: 0 auto;">
+            <div class="card-body">
+                <i class="fas fa-shopping-bag text-cosmetics-pink fa-4x mb-3"></i>
+                <h4 class="text-cosmetics-charcoal">No hay productos registrados</h4>
+                <p class="text-muted">Comience agregando su primer producto cosmético</p>
+                <a href="{% url 'productos:create' %}" class="btn btn-cosmetics-primary">
+                    <i class="fas fa-plus me-2"></i>Agregar Primer Producto
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

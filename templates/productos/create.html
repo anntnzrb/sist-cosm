@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Agregar Producto - Cosmetics Store{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-plus-circle me-3"></i>AGREGAR PRODUCTO</h1>
+    <p>Añade un nuevo producto cosmético a nuestra colección</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="form-cosmetic">
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="{{ form.nombre.id_for_label }}" class="form-label">
+                        <i class="fas fa-palette me-2 text-cosmetics-pink"></i>{{ form.nombre.label }}
+                    </label>
+                    {{ form.nombre }}
+                    {% if form.nombre.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.nombre.errors %}
+                                <small>{{ error }}</small><br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.descripcion.id_for_label }}" class="form-label">
+                        <i class="fas fa-align-left me-2 text-cosmetics-gold"></i>{{ form.descripcion.label }}
+                    </label>
+                    {{ form.descripcion }}
+                    {% if form.descripcion.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.descripcion.errors %}
+                                <small>{{ error }}</small><br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.precio.id_for_label }}" class="form-label">
+                            <i class="fas fa-dollar-sign me-2 text-cosmetics-rose-gold"></i>{{ form.precio.label }}
+                        </label>
+                        {{ form.precio }}
+                        {% if form.precio.errors %}
+                            <div class="text-danger mt-1">
+                                {% for error in form.precio.errors %}
+                                    <small>{{ error }}</small><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.iva.id_for_label }}" class="form-label">
+                            <i class="fas fa-percent me-2 text-cosmetics-charcoal"></i>{{ form.iva.label }}
+                        </label>
+                        {{ form.iva }}
+                        {% if form.iva.errors %}
+                            <div class="text-danger mt-1">
+                                {% for error in form.iva.errors %}
+                                    <small>{{ error }}</small><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="{{ form.imagen.id_for_label }}" class="form-label">
+                        <i class="fas fa-camera me-2 text-cosmetics-pink"></i>{{ form.imagen.label }}
+                    </label>
+                    {{ form.imagen }}
+                    <div class="form-text">Formatos aceptados: JPG, PNG, GIF. Tamaño máximo: 5MB</div>
+                    {% if form.imagen.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.imagen.errors %}
+                                <small>{{ error }}</small><br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3">
+                        <i class="fas fa-save me-2"></i>Guardar Producto
+                    </button>
+                    <a href="{% url 'productos:list' %}" class="btn btn-cosmetics-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

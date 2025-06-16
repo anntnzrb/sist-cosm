@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nuestros Proveedores - Cosmetics Store{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-truck me-3"></i>NUESTROS PROVEEDORES</h1>
+    <p>Conoce a nuestros socios comerciales de confianza en el mundo de la belleza</p>
+</div>
+
+<div class="text-center mb-4">
+    <a href="{% url 'proveedores:create' %}" class="btn btn-cosmetics-primary btn-lg">
+        <i class="fas fa-plus me-2"></i>AGREGAR PROVEEDOR
+    </a>
+</div>
+
+{% if proveedores %}
+    <div class="proveedores-grid">
+        {% for proveedor in proveedores %}
+            <div class="card card-cosmetic fade-in">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ proveedor.nombre }}</h5>
+                </div>
+                
+                <div class="text-center py-4" style="background: linear-gradient(135deg, var(--cosmetics-nude), var(--cosmetics-rose-gold));">
+                    <i class="fas fa-building text-cosmetics-pink fa-4x"></i>
+                </div>
+                
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong><i class="fas fa-envelope me-2 text-cosmetics-pink"></i>Email:</strong><br>
+                        {{ proveedor.correo }}
+                    </p>
+                    <p class="card-text">
+                        <strong><i class="fas fa-phone me-2 text-cosmetics-gold"></i>Teléfono:</strong><br>
+                        {{ proveedor.telefono }}
+                    </p>
+                    <p class="card-text">
+                        <strong><i class="fas fa-globe me-2 text-cosmetics-rose-gold"></i>País:</strong><br>
+                        {{ proveedor.pais }}
+                    </p>
+                    <p class="card-text">
+                        <strong><i class="fas fa-map-marker-alt me-2 text-cosmetics-charcoal"></i>Dirección:</strong><br>
+                        {{ proveedor.direccion|truncatewords:10 }}
+                    </p>
+                    
+                    <div class="action-buttons mt-3">
+                        <a href="{% url 'proveedores:update' proveedor.pk %}" class="btn btn-cosmetics-secondary btn-sm">
+                            <i class="fas fa-edit me-1"></i>Editar
+                        </a>
+                        <a href="{% url 'proveedores:delete' proveedor.pk %}" class="btn btn-cosmetics-danger btn-sm" 
+                           data-confirm="¿Está seguro de eliminar a {{ proveedor.nombre }}?">
+                            <i class="fas fa-trash me-1"></i>Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    {% if is_paginated %}
+        <nav aria-label="Paginación" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">Primera</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                    </li>
+                {% endif %}
+                
+                <li class="page-item active">
+                    <span class="page-link">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+                </li>
+                
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% else %}
+    <div class="text-center py-5">
+        <div class="card card-cosmetic" style="max-width: 500px; margin: 0 auto;">
+            <div class="card-body">
+                <i class="fas fa-truck text-cosmetics-pink fa-4x mb-3"></i>
+                <h4 class="text-cosmetics-charcoal">No hay proveedores registrados</h4>
+                <p class="text-muted">Comience agregando su primer proveedor de productos cosméticos</p>
+                <a href="{% url 'proveedores:create' %}" class="btn btn-cosmetics-primary">
+                    <i class="fas fa-plus me-2"></i>Agregar Primer Proveedor
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
