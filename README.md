@@ -1,127 +1,46 @@
 # Cosmetics Store - Django Web Application
 
-A comprehensive Django-based cosmetics store web application featuring full CRUD operations for workers, company information, products, and suppliers.
-
-## Features
-
-- **Beautiful Cosmetics Theme**: Pink, gold, and rose-gold color scheme
-- **Responsive Design**: Bootstrap 5 with mobile-first approach
-- **Full CRUD Operations**: Complete management for all entities
-- **Image Upload Support**: For workers, company, and products
-- **Form Validation**: Comprehensive client and server-side validation
-- **PostgreSQL Integration**: Production-ready database setup
+A Django-based cosmetics store web application with full CRUD operations for workers, company information, products, and suppliers.
 
 ## Quick Start
 
-### 1. Clone the Repository
+### Option 1: Docker (Recommended)
 ```bash
-git clone <repository-url>
-cd sist-cosm
+# Start the application
+docker-compose up --build
+
+# Access the app
+http://localhost:8000
 ```
 
-### 2. Install Dependencies
+### Option 2: Local Development
 ```bash
-# Install UV package manager if not already installed
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Install project dependencies
+# Install dependencies
 uv sync
-```
 
-### 3. Database Setup
-```bash
-# Install PostgreSQL
-sudo apt update
-sudo apt install postgresql postgresql-contrib
-
-# Start PostgreSQL service
-sudo systemctl start postgresql
-sudo systemctl enable postgresql
-
-# Create database and user
+# Setup PostgreSQL database
 sudo -u postgres psql
 CREATE DATABASE practicatpe2;
 CREATE USER practicausr25 WITH PASSWORD 'practic35';
 GRANT ALL PRIVILEGES ON DATABASE practicatpe2 TO practicausr25;
-GRANT ALL ON SCHEMA public TO practicausr25;
-GRANT CREATE ON SCHEMA public TO practicausr25;
 \q
+
+# Run migrations and start server
+uv run python manage.py migrate --settings=cosmeticos_store.settings_local
+uv run python manage.py runserver --settings=cosmeticos_store.settings_local
 ```
 
-### 4. Django Setup
-```bash
-# Run database migrations
-uv run python manage.py migrate
+## Access Points
+- **Homepage**: http://localhost:8000/
+- **Company Info**: http://localhost:8000/nosotros/
+- **Workers**: http://localhost:8000/trabajadores/
+- **Products**: http://localhost:8000/productos/
+- **Suppliers**: http://localhost:8000/proveedores/
 
-# Create media directories
-mkdir -p media/trabajadores media/empresa media/productos
+## Database Credentials
+- **Database**: `practicatpe2`
+- **User**: `practicausr25`
+- **Password**: `practic35`
 
-# Collect static files
-uv run python manage.py collectstatic --noinput
-```
-
-### 5. Run the Application
-```bash
-# Start development server
-uv run python manage.py runserver
-
-# For external access (e.g., testing tools)
-uv run python manage.py runserver 0.0.0.0:8000
-```
-
-### 6. Access the Application
-Open your browser and navigate to:
-- **Homepage**: http://127.0.0.1:8000/
-- **Company Info**: http://127.0.0.1:8000/nosotros/
-- **Workers**: http://127.0.0.1:8000/trabajadores/
-- **Products**: http://127.0.0.1:8000/productos/
-- **Suppliers**: http://127.0.0.1:8000/proveedores/
-
-## Project Structure
-
-```
-sist-cosm/
-├── apps/
-│   ├── empresa/          # Company management
-│   ├── productos/        # Products catalog
-│   ├── proveedores/      # Suppliers management
-│   └── trabajadores/     # Workers management
-├── cosmeticos_store/     # Django project settings
-├── static/               # Static files (CSS, JS)
-├── templates/            # HTML templates
-├── media/                # User uploads (auto-created)
-└── staticfiles/          # Collected static files (auto-created)
-```
-
-## Key Features
-
-### Entity Management
-- **Trabajadores**: Employee management with images, unique IDs
-- **Empresa**: Company information (singleton pattern)
-- **Productos**: Product catalog with IVA validation (15% or 0%)
-- **Proveedores**: Supplier contact management
-
-### Grid Layouts
-- **Workers**: 2x2 card grid
-- **Products**: 3-column grid
-- **Suppliers**: 3x2 grid
-
-### Technology Stack
-- **Backend**: Django 5.2.2
-- **Database**: PostgreSQL
-- **Frontend**: Bootstrap 5, FontAwesome 6
-- **Package Manager**: UV
-- **Image Processing**: Pillow
-
-## Development
-
-The application follows Django best practices with:
-- Model-View-Template (MVT) architecture
-- Class-based views for CRUD operations
-- ModelForms for data validation
-- Static file organization
-- Responsive template design
-
-## License
-
-This project is developed as part of an educational/academic assignment.
+## Technology Stack
+- Django 5.2.2 + PostgreSQL + Bootstrap
