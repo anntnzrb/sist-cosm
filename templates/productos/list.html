@@ -9,13 +9,12 @@
     <p>Descubre nuestra exclusiva gama de productos cosméticos de alta calidad</p>
 </div>
 
+{% if productos %}
 <div class="text-center mb-4">
     <a href="{% url 'productos:create' %}" class="btn btn-cosmetics-primary btn-lg">
         <i class="fas fa-plus me-2"></i>AGREGAR PRODUCTO
     </a>
 </div>
-
-{% if productos %}
     <div class="productos-grid">
         {% for producto in productos %}
             <div class="card card-cosmetic fade-in">

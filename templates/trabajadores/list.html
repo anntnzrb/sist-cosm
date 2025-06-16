@@ -9,13 +9,12 @@
     <p>Conoce a nuestro equipo de expertos en belleza y cosméticos</p>
 </div>
 
+{% if trabajadores %}
 <div class="text-center mb-4">
     <a href="{% url 'trabajadores:create' %}" class="btn btn-cosmetics-primary btn-lg">
         <i class="fas fa-plus me-2"></i>AGREGAR TRABAJADOR
     </a>
 </div>
-
-{% if trabajadores %}
     <div class="trabajadores-grid">
         {% for trabajador in trabajadores %}
             <div class="card card-cosmetic fade-in">

@@ -9,13 +9,12 @@
     <p>Conoce a nuestros socios comerciales de confianza en el mundo de la belleza</p>
 </div>
 
+{% if proveedores %}
 <div class="text-center mb-4">
     <a href="{% url 'proveedores:create' %}" class="btn btn-cosmetics-primary btn-lg">
         <i class="fas fa-plus me-2"></i>AGREGAR PROVEEDOR
     </a>
 </div>
-
-{% if proveedores %}
     <div class="proveedores-grid">
         {% for proveedor in proveedores %}
             <div class="card card-cosmetic fade-in">
