@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.core.exceptions import ValidationError
+from datetime import datetime
 
 
 class Empresa(models.Model):
@@ -26,3 +27,9 @@ class Empresa(models.Model):
     
     def get_absolute_url(self):
         return reverse('empresa:detail')
+    
+    @property
+    def anos_experiencia(self):
+        """Calcula los años de experiencia desde la fundación hasta la fecha actual"""
+        current_year = datetime.now().year
+        return current_year - self.anio_fundacion
