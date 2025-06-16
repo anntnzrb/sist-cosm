@@ -1,11 +1,124 @@
 [project]
 name = "sist-cosm"
-version = "0.1.0"
-description = "xyz"
+version = "1.0.0"
+description = "Django cosmetics store application with comprehensive CRUD operations"
 readme = "README.md"
+authors = [
+    {name = "SPARC Development Team", email = "dev@cosmeticos-store.com"}
+]
 requires-python = ">=3.13"
+
 dependencies = [
     "django==5.2.2",
-    "pillow>=11.2.1",
-    "psycopg2-binary>=2.9.10",
+    "psycopg2-binary>=2.9.0",
+    "pillow>=10.0.0",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "isort>=5.12.0",
+    "bandit>=1.7.0",
+    "safety>=2.3.0",
+    "coverage>=7.0.0",
+    "factory-boy>=3.3.0",
+    "django-debug-toolbar>=4.0.0",
+    "pre-commit>=3.0.0",
+]
+
+test = [
+    "pytest>=7.0.0",
+    "pytest-django>=4.5.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "django-test-plus>=2.2.0",
+]
+
+performance = [
+    "django-silk>=5.0.0",
+    "locust>=2.0.0",
+    "django-cache-panel>=0.1.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py313']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    # directories
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_django = "django"
+known_first_party = ["apps", "cosmeticos_store"]
+sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+skip = ["migrations"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = [
+    "E203",  # whitespace before ':'
+    "E501",  # line too long (handled by black)
+    "W503",  # line break before binary operator
+]
+exclude = [
+    ".git",
+    "__pycache__",
+    "migrations",
+    ".venv",
+    "build",
+    "dist",
+]
+per-file-ignores = [
+    "__init__.py:F401",
+    "settings.py:E501",
+]
+
+[tool.coverage.run]
+source = "."
+omit = [
+    "*/migrations/*",
+    "*/venv/*",
+    "*/env/*",
+    "manage.py",
+    "*/settings/*",
+    "*/tests/*",
+    "*/__pycache__/*",
+    "*/staticfiles/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "@abstract",
+]
+show_missing = true
+precision = 2
+fail_under = 90
+
+[tool.bandit]
+exclude_dirs = ["tests", "migrations"]
+skips = ["B101", "B601"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
