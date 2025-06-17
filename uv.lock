@@ -1304,6 +1304,7 @@ name = "sist-cosm"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [
+    { name = "coverage" },
     { name = "django" },
     { name = "gunicorn" },
     { name = "pillow" },
@@ -1339,6 +1340,7 @@ test = [
 requires-dist = [
     { name = "bandit", marker = "extra == 'dev'", specifier = ">=1.7.0" },
     { name = "black", marker = "extra == 'dev'", specifier = ">=23.0.0" },
+    { name = "coverage", specifier = ">=7.9.1" },
     { name = "coverage", marker = "extra == 'dev'", specifier = ">=7.0.0" },
     { name = "django", specifier = "==5.2.2" },
     { name = "django-cache-panel", marker = "extra == 'performance'", specifier = ">=0.1.0" },

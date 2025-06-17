@@ -153,7 +153,7 @@ class ProductoModelTest(TestCase):
         """Test price calculation method with IVA"""
         producto = Producto.objects.create(**self.valid_data)
         expected_price = 25.99 * 1.15  # 25.99 + 15% IVA
-        self.assertAlmostEqual(producto.get_precio_con_iva(), expected_price, places=2)
+        self.assertAlmostEqual(float(producto.get_precio_con_iva()), expected_price, places=2)
 
 
 class ProveedorModelTest(TestCase):

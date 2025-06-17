@@ -13,6 +13,7 @@ dependencies = [
     "psycopg2-binary>=2.9.0",
     "pillow>=10.0.0",
     "gunicorn>=21.0.0",
+    "coverage>=7.9.1",
 ]
 
 [project.optional-dependencies]
@@ -91,7 +92,7 @@ per-file-ignores = [
 ]
 
 [tool.coverage.run]
-source = "."
+source = ["."]
 omit = [
     "*/migrations/*",
     "*/venv/*",
@@ -122,6 +123,9 @@ skips = ["B101", "B601"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["apps", "cosmeticos_store"]
+
+[tool.uv.workspace]
+members = []
 
 [build-system]
 requires = ["hatchling"]

@@ -24,7 +24,10 @@ class Producto(models.Model):
         return self.nombre
     
     def get_precio_con_iva(self):
-        return self.precio * (1 + self.iva / 100)
+        from decimal import Decimal
+        precio_decimal = Decimal(str(self.precio))
+        iva_decimal = Decimal(str(self.iva)) / Decimal('100')
+        return precio_decimal * (Decimal('1') + iva_decimal)
     
     def get_absolute_url(self):
         return reverse('productos:detail', kwargs={'pk': self.pk})
