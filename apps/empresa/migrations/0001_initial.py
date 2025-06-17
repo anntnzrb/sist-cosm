@@ -4,28 +4,48 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Empresa',
+            name="Empresa",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(max_length=200, verbose_name='Nombre')),
-                ('direccion', models.TextField(verbose_name='Dirección')),
-                ('mision', models.TextField(verbose_name='Misión')),
-                ('vision', models.TextField(verbose_name='Visión')),
-                ('anio_fundacion', models.IntegerField(verbose_name='Año de fundación')),
-                ('ruc', models.CharField(max_length=20, unique=True, verbose_name='RUC')),
-                ('imagen', models.ImageField(blank=True, null=True, upload_to='empresa/', verbose_name='Imagen')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nombre", models.CharField(max_length=200, verbose_name="Nombre")),
+                ("direccion", models.TextField(verbose_name="Dirección")),
+                ("mision", models.TextField(verbose_name="Misión")),
+                ("vision", models.TextField(verbose_name="Visión")),
+                (
+                    "anio_fundacion",
+                    models.IntegerField(verbose_name="Año de fundación"),
+                ),
+                (
+                    "ruc",
+                    models.CharField(max_length=20, unique=True, verbose_name="RUC"),
+                ),
+                (
+                    "imagen",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="empresa/",
+                        verbose_name="Imagen",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Empresa',
-                'verbose_name_plural': 'Empresa',
+                "verbose_name": "Empresa",
+                "verbose_name_plural": "Empresa",
             },
         ),
     ]

@@ -4,28 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Proveedor',
+            name="Proveedor",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(max_length=200, verbose_name='Nombre')),
-                ('descripcion', models.TextField(verbose_name='Descripción')),
-                ('telefono', models.CharField(max_length=20, verbose_name='Teléfono')),
-                ('pais', models.CharField(max_length=100, verbose_name='País')),
-                ('correo', models.EmailField(max_length=254, verbose_name='Correo electrónico')),
-                ('direccion', models.TextField(verbose_name='Dirección')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nombre", models.CharField(max_length=200, verbose_name="Nombre")),
+                ("descripcion", models.TextField(verbose_name="Descripción")),
+                ("telefono", models.CharField(max_length=20, verbose_name="Teléfono")),
+                ("pais", models.CharField(max_length=100, verbose_name="País")),
+                (
+                    "correo",
+                    models.EmailField(
+                        max_length=254, verbose_name="Correo electrónico"
+                    ),
+                ),
+                ("direccion", models.TextField(verbose_name="Dirección")),
             ],
             options={
-                'verbose_name': 'Proveedor',
-                'verbose_name_plural': 'Proveedores',
-                'ordering': ['nombre'],
+                "verbose_name": "Proveedor",
+                "verbose_name_plural": "Proveedores",
+                "ordering": ["nombre"],
             },
         ),
     ]

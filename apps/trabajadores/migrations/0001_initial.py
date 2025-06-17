@@ -4,28 +4,55 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Trabajador',
+            name="Trabajador",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre', models.CharField(max_length=100, verbose_name='Nombre')),
-                ('apellido', models.CharField(max_length=100, verbose_name='Apellido')),
-                ('correo', models.EmailField(max_length=254, verbose_name='Correo electrónico')),
-                ('cedula', models.CharField(max_length=20, unique=True, verbose_name='Cédula')),
-                ('codigo_empleado', models.CharField(max_length=20, unique=True, verbose_name='Código de empleado')),
-                ('imagen', models.ImageField(blank=True, null=True, upload_to='trabajadores/', verbose_name='Imagen')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nombre", models.CharField(max_length=100, verbose_name="Nombre")),
+                ("apellido", models.CharField(max_length=100, verbose_name="Apellido")),
+                (
+                    "correo",
+                    models.EmailField(
+                        max_length=254, verbose_name="Correo electrónico"
+                    ),
+                ),
+                (
+                    "cedula",
+                    models.CharField(max_length=20, unique=True, verbose_name="Cédula"),
+                ),
+                (
+                    "codigo_empleado",
+                    models.CharField(
+                        max_length=20, unique=True, verbose_name="Código de empleado"
+                    ),
+                ),
+                (
+                    "imagen",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="trabajadores/",
+                        verbose_name="Imagen",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Trabajador',
-                'verbose_name_plural': 'Trabajadores',
-                'ordering': ['nombre', 'apellido'],
+                "verbose_name": "Trabajador",
+                "verbose_name_plural": "Trabajadores",
+                "ordering": ["nombre", "apellido"],
             },
         ),
     ]
