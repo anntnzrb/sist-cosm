@@ -3,3 +3,5 @@
 - `uv` is reponsible of handling requirements. DO NOT rely on anything else other than `uv`
 - ALWAYS use `docker` for executing `uv` and database commands, migrations, etc. ALL development MUST be done through `docker` to avoid polluting the local environment
 - Use `docker ...` commands as needed
+- Use `uvx ruff check` to lint the project
+- Use `uvx ruff format` to format the project
