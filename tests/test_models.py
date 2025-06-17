@@ -211,7 +211,7 @@ class ModelIntegrationTest(TestCase):
     def test_all_models_can_be_created_together(self):
         """Test that all models can coexist without conflicts"""
         # Create one of each model
-        trabajador = Trabajador.objects.create(
+        Trabajador.objects.create(
             nombre="María",
             apellido="López",
             correo="maria@test.com",
@@ -219,7 +219,7 @@ class ModelIntegrationTest(TestCase):
             codigo_empleado="EMP001",
         )
 
-        empresa = Empresa.objects.create(
+        Empresa.objects.create(
             nombre="Test Company",
             direccion="Test Address",
             mision="Test Mission",
@@ -228,11 +228,11 @@ class ModelIntegrationTest(TestCase):
             ruc="1234567890123",
         )
 
-        producto = Producto.objects.create(
+        Producto.objects.create(
             nombre="Test Product", descripcion="Test Description", precio=10.99, iva=15
         )
 
-        proveedor = Proveedor.objects.create(
+        Proveedor.objects.create(
             nombre="Test Supplier",
             descripcion="Test Supplier Desc",
             telefono="123456789",

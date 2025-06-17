@@ -3,8 +3,6 @@ Test cases for all views following TDD London School approach.
 Target: 100% test coverage for view layer.
 """
 
-from django.contrib.auth.models import User
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -141,7 +139,7 @@ class EmpresaViewTest(TestCase):
 
     def test_empresa_detail_view_with_empresa(self):
         """Test empresa detail view when company exists"""
-        empresa = Empresa.objects.create(**self.empresa_data)
+        Empresa.objects.create(**self.empresa_data)
         url = reverse("empresa:detail")
         response = self.client.get(url)
 

@@ -3,7 +3,6 @@ Test cases for all forms following TDD London School approach.
 Target: 100% test coverage for form layer.
 """
 
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
 from apps.empresa.forms import EmpresaForm
@@ -98,7 +97,7 @@ class EmpresaFormTest(TestCase):
         invalid_data = self.valid_data.copy()
         invalid_data["anio_fundacion"] = 1500  # Too old
 
-        form = EmpresaForm(data=invalid_data)
+        EmpresaForm(data=invalid_data)
         # Note: This test depends on custom validation in the form
         # If no custom validation exists, this test documents the expected behavior
 
