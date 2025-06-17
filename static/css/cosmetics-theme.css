@@ -44,22 +44,52 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif !important;
 }
 
-/* Navigation Styles */
-.cosmetics-nav {
+/* Header Styles */
+.cosmetics-header {
     background: var(--gradient-background);
     border-bottom: 2px solid var(--cosmetics-rose-gold);
     box-shadow: 0 2px 15px rgba(180, 90, 114, 0.1);
     backdrop-filter: blur(10px);
 }
 
-.cosmetics-nav .navbar-brand {
-    color: var(--cosmetics-primary-dark) !important;
+.company-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
     font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: -0.5px;
+    color: var(--cosmetics-charcoal);
 }
 
-.cosmetics-nav .nav-link {
+.logo-oval {
+    background: var(--cosmetics-cream);
+    border: 2px solid var(--cosmetics-rose-gold);
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    min-width: 200px;
+    font-size: 0.9rem;
+}
+
+.company-logo-img {
+    max-height: 40px;
+    max-width: 180px;
+    object-fit: contain;
+}
+
+/* Custom padding utilities */
+.pe-15 {
+    padding-right: 15px !important;
+}
+
+.ps-15 {
+    padding-left: 15px !important;
+}
+
+/* Navigation Styles */
+.cosmetics-header .navbar {
+    border-top: 1px solid var(--cosmetics-light-gray);
+    padding-top: 1rem;
+}
+
+.cosmetics-header .nav-link {
     color: var(--cosmetics-charcoal) !important;
     font-weight: 500;
     padding: 0.75rem 1.25rem !important;
@@ -69,8 +99,8 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-.cosmetics-nav .nav-link:hover,
-.cosmetics-nav .nav-link.active {
+.cosmetics-header .nav-link:hover,
+.cosmetics-header .nav-link.active {
     background: var(--gradient-primary);
     color: white !important;
     transform: translateY(-1px);
@@ -386,7 +416,7 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 2rem;
     }
     
-    .cosmetics-nav .navbar-nav {
+    .cosmetics-header .navbar-nav {
         text-align: center;
     }
     
