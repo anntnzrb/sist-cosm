@@ -4,24 +4,22 @@
 {% block title %}Nuestros Productos - Cosmetics Store{% endblock %}
 
 {% block content %}
-<div class="page-header">
+<div class="page-header text-center">
     <h1><i class="fas fa-shopping-bag me-3"></i>NUESTROS PRODUCTOS</h1>
-    <p>Descubre nuestra exclusiva gama de productos cosméticos de alta calidad</p>
 </div>
 
 {% if productos %}
-<div class="text-center mb-4">
-    <a href="{% url 'productos:create' %}" class="btn btn-cosmetics-primary btn-lg">
+<div class="d-flex justify-content-end mb-4">
+    <a href="{% url 'productos:create' %}" class="btn btn-cosmetics-primary">
         <i class="fas fa-plus me-2"></i>AGREGAR PRODUCTO
     </a>
 </div>
+{% endif %}
+
+{% if productos %}
     <div class="productos-grid">
         {% for producto in productos %}
-            <div class="card card-cosmetic fade-in">
-                <div class="card-header">
-                    <h5 class="mb-0">{{ producto.nombre }}</h5>
-                </div>
-                
+            <div class="card card-cosmetic fade-in d-flex flex-column h-100">
                 {% if producto.imagen %}
                     <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="card-img-top">
                 {% else %}
@@ -30,25 +28,20 @@
                     </div>
                 {% endif %}
                 
-                <div class="card-body">
-                    <p class="card-text text-muted">{{ producto.descripcion|truncatewords:15 }}</p>
-                    
+                <div class="card-body d-flex flex-column flex-grow-1">
+                    <h5 class="text-center mb-3">{{ producto.nombre }}</h5>
                     <div class="price-display text-center mb-3">
                         ${{ producto.precio }}
-                        {% if producto.iva > 0 %}
-                            <br><small class="price-iva">IVA {{ producto.iva }}% incluido</small>
-                        {% else %}
-                            <br><small class="price-iva">Exento de IVA</small>
-                        {% endif %}
+                        <br><small class="price-iva">{{ producto.iva }}% IVA</small>
                     </div>
                     
-                    <div class="action-buttons">
-                        <a href="{% url 'productos:update' producto.pk %}" class="btn btn-cosmetics-secondary btn-sm">
-                            <i class="fas fa-edit me-1"></i>Editar
+                    <div class="d-flex justify-content-end mt-auto">
+                        <a href="{% url 'productos:update' producto.pk %}" class="me-2 text-dark" style="font-size: 1.2rem;">
+                            <i class="fas fa-edit"></i>
                         </a>
-                        <a href="{% url 'productos:delete' producto.pk %}" class="btn btn-cosmetics-danger btn-sm"
+                        <a href="{% url 'productos:delete' producto.pk %}" class="text-dark" style="font-size: 1.2rem;"
                            data-confirm="¿Está seguro de eliminar {{ producto.nombre }}?">
-                            <i class="fas fa-trash me-1"></i>Eliminar
+                            <i class="fas fa-trash"></i>
                         </a>
                     </div>
                 </div>
