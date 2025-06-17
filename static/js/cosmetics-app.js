@@ -7,12 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
-    // Auto-hide alerts after 5 seconds
+    // Auto-hide Django messages (success/warning alerts) after 5 seconds
     setTimeout(function() {
-        var alerts = document.querySelectorAll('.alert');
+        var alerts = document.querySelectorAll('.alert.alert-success, .alert.alert-warning, .alert.alert-danger');
         alerts.forEach(function(alert) {
-            var bsAlert = new bootstrap.Alert(alert);
-            bsAlert.close();
+            if (alert.classList.contains('alert-dismissible') || alert.hasAttribute('data-bs-dismiss')) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }
         });
     }, 5000);
 
