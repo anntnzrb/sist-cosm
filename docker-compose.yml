@@ -15,6 +15,7 @@ services:
   web:
     build: .
     volumes:
+      - .:/app
       - ./media:/app/media
     ports:
       - "8000:8000"
