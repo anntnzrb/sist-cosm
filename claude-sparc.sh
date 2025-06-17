@@ -306,7 +306,7 @@ execute_sparc_development() {
     local allowed_tools=$(build_allowed_tools)
     local claude_flags=$(build_claude_flags)
 
-claude "
+/Users/annt/.claude/bin/claude "
 # SPARC Automated Development System
 # Project: ${PROJECT_NAME}
 # Initial Research Document: ${README_PATH}
