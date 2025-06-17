@@ -9,14 +9,14 @@ class Proveedor(models.Model):
     pais = models.CharField(max_length=100, verbose_name="País")
     correo = models.EmailField(verbose_name="Correo electrónico")
     direccion = models.TextField(verbose_name="Dirección")
-    
+
     class Meta:
         verbose_name = "Proveedor"
         verbose_name_plural = "Proveedores"
-        ordering = ['nombre']
-    
+        ordering = ["nombre"]
+
     def __str__(self):
         return self.nombre
-    
+
     def get_absolute_url(self):
-        return reverse('proveedores:detail', kwargs={'pk': self.pk})
+        return reverse("proveedores:detail", kwargs={"pk": self.pk})
