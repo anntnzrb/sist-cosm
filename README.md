@@ -6,26 +6,24 @@ Django app con CRUD para tienda de cosméticos.
 
 ### Con Docker
 ```bash
-git clone <url>
-cd sist-cosm
 docker-compose up --build
 ```
 
 ### Sin Docker
 ```bash
-git clone <url>
-cd sist-cosm
-pip install uv && uv sync
+uv sync
 
-# Configurar PostgreSQL
+# PostgreSQL
 sudo -u postgres psql
 CREATE DATABASE practicatpe2;
 CREATE USER practicausr25 WITH PASSWORD 'practic35';
+GRANT ALL PRIVILEGES ON DATABASE practicatpe2 TO practicausr25;
 \q
 
-# Ejecutar
-uv run python manage.py migrate
-uv run python manage.py runserver
+# Ejecutar (usar settings_local.py para localhost)
+uv run python manage.py migrate --settings=cosmeticos_store.settings_local
+uv run python manage.py createsuperuser --settings=cosmeticos_store.settings_local
+uv run python manage.py runserver --settings=cosmeticos_store.settings_local
 ```
 
 **Ver**: http://localhost:8000
