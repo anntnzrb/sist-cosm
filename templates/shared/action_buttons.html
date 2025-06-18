@@ -1,0 +1,18 @@
+{% comment %}
+Reusable action buttons component
+Parameters:
+- update_url: URL for edit/update action
+- delete_url: URL for delete action
+- confirm_message: Confirmation message for delete action
+- css_classes: Additional CSS classes for the container (optional)
+{% endcomment %}
+
+<div class="{% if css_classes %}{{ css_classes }}{% else %}d-flex justify-content-end mt-auto{% endif %}">
+    <a href="{{ update_url }}" class="me-2 text-dark" style="font-size: 1.2rem;">
+        <i class="fas fa-edit"></i>
+    </a>
+    <a href="{{ delete_url }}" class="text-dark" style="font-size: 1.2rem;"
+       data-confirm="{{ confirm_message }}">
+        <i class="fas fa-trash"></i>
+    </a>
+</div>
