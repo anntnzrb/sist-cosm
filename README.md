@@ -30,4 +30,11 @@ uv run python manage.py runserver
 
 **Ver**: http://localhost:8000
 
+## Producción
+
+Para configuración de producción:
+```bash
+docker compose run --rm -e DJANGO_SETTINGS_MODULE=cosmeticos_store.settings_production web uv run python manage.py runserver
+```
+
 **Especificaciones**: [docs/prd.md](docs/prd.md)
