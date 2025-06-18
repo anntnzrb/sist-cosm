@@ -13,4 +13,7 @@ wheels/
 staticfiles/
 media/
 
+# Logs
+*.log
+
 .claude/
