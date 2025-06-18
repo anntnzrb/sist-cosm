@@ -32,15 +32,9 @@
                             <div class="card-body card-body-horizontal-compact">
                                 <div class="d-flex justify-content-between align-items-start mb-2">
                                     <h6 class="card-title text-cosmetics-primary mb-0">{{ trabajador.nombre }} {{ trabajador.apellido }}</h6>
-                                    <div class="action-buttons-compact">
-                                        <a href="{% url 'trabajadores:update' trabajador.pk %}" class="btn btn-cosmetics-secondary btn-sm">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="{% url 'trabajadores:delete' trabajador.pk %}" class="btn btn-cosmetics-danger btn-sm" 
-                                           data-confirm="¿Está seguro de eliminar a {{ trabajador.nombre }} {{ trabajador.apellido }}?">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
+                                    {% url 'trabajadores:update' trabajador.pk as update_url %}
+                                    {% url 'trabajadores:delete' trabajador.pk as delete_url %}
+                                    {% include 'shared/action_buttons.html' with update_url=update_url delete_url=delete_url confirm_message="¿Está seguro de eliminar a "|add:trabajador.nombre|add:" "|add:trabajador.apellido|add:"?" css_classes="action-buttons-compact" %}
                                 </div>
                                 
                                 <p class="card-text small mb-1">

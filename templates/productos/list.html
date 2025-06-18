@@ -35,15 +35,9 @@
                         <br><small class="price-iva">{{ producto.iva }}% IVA</small>
                     </div>
                     
-                    <div class="d-flex justify-content-end mt-auto">
-                        <a href="{% url 'productos:update' producto.pk %}" class="me-2 text-dark" style="font-size: 1.2rem;">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="{% url 'productos:delete' producto.pk %}" class="text-dark" style="font-size: 1.2rem;"
-                           data-confirm="¿Está seguro de eliminar {{ producto.nombre }}?">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </div>
+                    {% url 'productos:update' producto.pk as update_url %}
+                    {% url 'productos:delete' producto.pk as delete_url %}
+                    {% include 'shared/action_buttons.html' with update_url=update_url delete_url=delete_url confirm_message="¿Está seguro de eliminar "|add:producto.nombre|add:"?" %}
                 </div>
             </div>
         {% endfor %}
