@@ -1,49 +1,21 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'shared/delete_base.html' %}
 
-{% block title %}Eliminar Trabajador - Cosmetics Store{% endblock %}
+{% block delete_page_title %}Eliminar Trabajador - Cosmetics Store{% endblock %}
 
-{% block content %}
-<div class="page-header">
-    <h1><i class="fas fa-user-times me-3 text-cosmetics-danger"></i>ELIMINAR TRABAJADOR</h1>
-    <p>Confirme la eliminación del miembro del equipo</p>
-</div>
+{% block delete_title %}<i class="fas fa-user-times me-3 text-cosmetics-danger"></i>ELIMINAR TRABAJADOR{% endblock %}
 
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card card-cosmetic">
-            <div class="card-header text-center bg-danger text-white">
-                <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación</h5>
-            </div>
-            
-            <div class="card-body text-center">
-                {% if object.imagen %}
-                    <img src="{{ object.imagen.url }}" alt="{{ object.nombre }}" class="img-thumbnail mb-3" style="max-width: 150px;">
-                {% else %}
-                    <i class="fas fa-user-circle text-cosmetics-pink fa-5x mb-3"></i>
-                {% endif %}
-                
-                <h4 class="text-cosmetics-charcoal">{{ object.nombre }} {{ object.apellido }}</h4>
-                <p class="text-muted">{{ object.correo }}</p>
-                <p class="text-muted">Código: {{ object.codigo_empleado }}</p>
-                
-                <div class="alert alert-warning" role="alert">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    <strong>¡Atención!</strong> Esta acción no se puede deshacer. 
-                    Se eliminará permanentemente toda la información del trabajador.
-                </div>
-                
-                <form method="post" class="mt-4">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-cosmetics-danger btn-lg me-3">
-                        <i class="fas fa-trash me-2"></i>Sí, Eliminar
-                    </button>
-                    <a href="{% url 'trabajadores:list' %}" class="btn btn-cosmetics-secondary btn-lg">
-                        <i class="fas fa-arrow-left me-2"></i>Cancelar
-                    </a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+{% block delete_description %}Confirme la eliminación del miembro del equipo{% endblock %}
+
+{% block default_icon %}
+<i class="fas fa-user-circle text-cosmetics-pink fa-5x mb-3"></i>
 {% endblock %}
+
+{% block object_details %}
+<h4 class="text-cosmetics-charcoal">{{ object.nombre }} {{ object.apellido }}</h4>
+<p class="text-muted">{{ object.correo }}</p>
+<p class="text-muted">Código: {{ object.codigo_empleado }}</p>
+{% endblock %}
+
+{% block warning_message %}Se eliminará permanentemente toda la información del trabajador.{% endblock %}
+
+{% block cancel_url %}{% url 'trabajadores:list' %}{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% block delete_page_title %}Eliminar - Cosmetics Store{% endblock %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% block delete_title %}{% endblock %}</h1>
+    <p>{% block delete_description %}Confirme la eliminación{% endblock %}</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-cosmetic">
+            <div class="card-header text-center bg-danger text-white">
+                <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación</h5>
+            </div>
+            
+            <div class="card-body text-center">
+                {% block object_image %}
+                {% if object.imagen %}
+                    <img src="{{ object.imagen.url }}" alt="{{ object.nombre }}" class="img-thumbnail mb-3" style="max-width: 150px;">
+                {% else %}
+                    {% block default_icon %}
+                    <i class="fas fa-question-circle text-cosmetics-pink fa-5x mb-3"></i>
+                    {% endblock %}
+                {% endif %}
+                {% endblock %}
+                
+                {% block object_details %}
+                <h4 class="text-cosmetics-charcoal">{{ object.nombre }}</h4>
+                {% endblock %}
+                
+                {% block extra_object_info %}{% endblock %}
+                
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>¡Atención!</strong> Esta acción no se puede deshacer. 
+                    {% block warning_message %}Se eliminará permanentemente toda la información.{% endblock %}
+                </div>
+                
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-cosmetics-danger btn-lg me-3">
+                        <i class="fas fa-trash me-2"></i>Sí, Eliminar
+                    </button>
+                    <a href="{% block cancel_url %}#{% endblock %}" class="btn btn-cosmetics-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>Cancelar
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
