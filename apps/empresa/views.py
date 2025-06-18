@@ -65,7 +65,5 @@ class EmpresaDeleteView(DeleteView):
             raise Http404("No company information exists to delete")
 
     def delete(self, request, *args, **kwargs):
-        messages.success(
-            self.request, "Información de empresa eliminada exitosamente."
-        )
+        messages.success(self.request, "Información de empresa eliminada exitosamente.")
         return super().delete(request, *args, **kwargs)
