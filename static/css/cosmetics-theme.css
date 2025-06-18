@@ -224,6 +224,19 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
 }
 
+.trabajadores-horizontal-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.trabajadores-two-column-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .productos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -391,12 +404,91 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
 }
 
+/* Horizontal Card Styles */
+.card-horizontal {
+    margin-bottom: 0;
+}
+
+.card-img-horizontal {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px 0 0 15px;
+}
+
+.card-img-placeholder {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--cosmetics-champagne), var(--cosmetics-rose-gold));
+    border-radius: 15px 0 0 15px;
+}
+
+.card-body-horizontal {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-body-horizontal-compact {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-header-horizontal {
+    border-bottom: 1px solid var(--cosmetics-light-gray);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.action-buttons-compact {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.action-buttons-compact .btn {
+    border-radius: 15px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .trabajadores-grid,
     .productos-grid,
     .proveedores-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .trabajadores-two-column-grid .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .card-img-horizontal {
+        height: 200px;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .card-img-placeholder {
+        height: 200px;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .card-horizontal .row.g-0 {
+        flex-direction: column;
+    }
+    
+    .card-horizontal .col-4,
+    .card-horizontal .col-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
     }
     
     .hero-section h1 {

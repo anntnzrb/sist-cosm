@@ -15,43 +15,48 @@
         <i class="fas fa-plus me-2"></i>AGREGAR TRABAJADOR
     </a>
 </div>
-    <div class="trabajadores-grid">
+    <div class="row trabajadores-two-column-grid">
         {% for trabajador in trabajadores %}
-            <div class="card card-cosmetic fade-in">
-                <div class="card-header">
-                    <h5 class="mb-0">{{ trabajador.nombre }} {{ trabajador.apellido }}</h5>
-                </div>
-                
-                {% if trabajador.imagen %}
-                    <img src="{{ trabajador.imagen.url }}" alt="{{ trabajador.nombre }}" class="card-img-top">
-                {% else %}
-                    <div class="text-center py-5" style="background: linear-gradient(135deg, var(--cosmetics-nude), var(--cosmetics-rose-gold));">
-                        <i class="fas fa-user-circle text-cosmetics-pink fa-5x"></i>
-                    </div>
-                {% endif %}
-                
-                <div class="card-body">
-                    <p class="card-text">
-                        <strong><i class="fas fa-envelope me-2 text-cosmetics-pink"></i>Email:</strong><br>
-                        {{ trabajador.correo }}
-                    </p>
-                    <p class="card-text">
-                        <strong><i class="fas fa-id-card me-2 text-cosmetics-gold"></i>Cédula:</strong><br>
-                        {{ trabajador.cedula }}
-                    </p>
-                    <p class="card-text">
-                        <strong><i class="fas fa-badge-check me-2 text-cosmetics-rose-gold"></i>Código:</strong><br>
-                        {{ trabajador.codigo_empleado }}
-                    </p>
-                    
-                    <div class="action-buttons mt-3">
-                        <a href="{% url 'trabajadores:update' trabajador.pk %}" class="btn btn-cosmetics-secondary btn-sm">
-                            <i class="fas fa-edit me-1"></i>Editar
-                        </a>
-                        <a href="{% url 'trabajadores:delete' trabajador.pk %}" class="btn btn-cosmetics-danger btn-sm" 
-                           data-confirm="¿Está seguro de eliminar a {{ trabajador.nombre }} {{ trabajador.apellido }}?">
-                            <i class="fas fa-trash me-1"></i>Eliminar
-                        </a>
+            <div class="col-lg-6 mb-4">
+                <div class="card card-cosmetic fade-in card-horizontal">
+                    <div class="row g-0">
+                        <div class="col-4">
+                            {% if trabajador.imagen %}
+                                <img src="{{ trabajador.imagen.url }}" alt="{{ trabajador.nombre }}" class="card-img-horizontal">
+                            {% else %}
+                                <div class="card-img-placeholder">
+                                    <i class="fas fa-user-circle text-cosmetics-pink fa-3x"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body card-body-horizontal-compact">
+                                <h6 class="card-title text-cosmetics-primary mb-2">{{ trabajador.nombre }} {{ trabajador.apellido }}</h6>
+                                
+                                <p class="card-text small mb-1">
+                                    <i class="fas fa-envelope me-1 text-cosmetics-pink"></i>
+                                    <span class="text-muted">{{ trabajador.correo }}</span>
+                                </p>
+                                <p class="card-text small mb-1">
+                                    <i class="fas fa-id-card me-1 text-cosmetics-gold"></i>
+                                    <span class="text-muted">{{ trabajador.cedula }}</span>
+                                </p>
+                                <p class="card-text small mb-2">
+                                    <i class="fas fa-badge-check me-1 text-cosmetics-rose-gold"></i>
+                                    <span class="text-muted">{{ trabajador.codigo_empleado }}</span>
+                                </p>
+                                
+                                <div class="action-buttons-compact mt-2">
+                                    <a href="{% url 'trabajadores:update' trabajador.pk %}" class="btn btn-cosmetics-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'trabajadores:delete' trabajador.pk %}" class="btn btn-cosmetics-danger btn-sm" 
+                                       data-confirm="¿Está seguro de eliminar a {{ trabajador.nombre }} {{ trabajador.apellido }}?">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
