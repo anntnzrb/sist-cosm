@@ -115,8 +115,8 @@ class EndToEndIntegrationTest(TestCase):
             response = self.client.post(reverse("productos:create"), data=producto_data)
             self.assertEqual(response.status_code, 302)
 
-        # Verify products were created
-        self.assertEqual(Producto.objects.count(), 4)
+        # Verify products were created (4 new + 10 sample products from migration)
+        self.assertEqual(Producto.objects.count(), 14)
 
         # 6. Add suppliers
         proveedores_data = [
@@ -229,7 +229,7 @@ class EndToEndIntegrationTest(TestCase):
             reverse("productos:delete", kwargs={"pk": producto_to_delete.pk})
         )
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Producto.objects.count(), 3)  # One less product
+        self.assertEqual(Producto.objects.count(), 13)  # One less product (14 - 1)
 
         # 12. Final verification - all sections should still be accessible
         for url_name, _ in navigation_urls:
@@ -273,7 +273,7 @@ class EndToEndIntegrationTest(TestCase):
         # Test that all models exist and have correct data
         self.assertEqual(Empresa.objects.count(), 1)
         self.assertEqual(Trabajador.objects.count(), 1)
-        self.assertEqual(Producto.objects.count(), 1)
+        self.assertEqual(Producto.objects.count(), 11)  # 1 created + 10 sample products
         self.assertEqual(Proveedor.objects.count(), 1)
 
         # Test string representations

@@ -244,7 +244,7 @@ class ModelIntegrationTest(TestCase):
         # Verify all were created
         self.assertEqual(Trabajador.objects.count(), 1)
         self.assertEqual(Empresa.objects.count(), 1)
-        self.assertEqual(Producto.objects.count(), 1)
+        self.assertEqual(Producto.objects.count(), 11)  # 1 created + 10 sample products
         self.assertEqual(Proveedor.objects.count(), 1)
 
     def test_database_constraints_enforcement(self):
