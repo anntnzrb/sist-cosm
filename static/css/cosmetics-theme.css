@@ -472,3 +472,27 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--cosmetics-text-secondary);
     font-weight: 500;
 }
+
+/* Company Image Styles */
+.empresa-image-container {
+    display: inline-block;
+    max-width: 300px;
+    max-height: 200px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 2px solid var(--cosmetics-light-gray);
+    background-color: var(--cosmetics-cream);
+    box-shadow: 0 4px 15px rgba(180, 90, 114, 0.1);
+}
+
+.empresa-image {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    max-height: 200px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}

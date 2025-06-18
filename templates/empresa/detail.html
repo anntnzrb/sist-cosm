@@ -10,106 +10,54 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8 mx-auto">
-        <div class="card card-cosmetic">
-            <div class="card-header text-center">
-                <h3 class="mb-0 text-cosmetics-pink">{{ empresa.nombre }}</h3>
+    <!-- Left Column: Company Info, Image, and Founding Year -->
+    <div class="col-md-6">
+        <!-- Company Basic Info -->
+        <div class="mb-4">
+            <h3 class="text-cosmetics-charcoal mb-3">{{ empresa.nombre }}</h3>
+            <div class="mb-2">
+                <strong>RUC:</strong> {{ empresa.ruc }}
             </div>
-            
-            <div class="card-body">
-                {% if empresa.imagen %}
-                    <div class="text-center mb-4">
-                        <img src="{{ empresa.imagen.url }}" alt="{{ empresa.nombre }}" class="img-fluid rounded" style="max-height: 300px;">
-                    </div>
-                {% endif %}
-                
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <h5 class="text-cosmetics-gold">
-                            <i class="fas fa-map-marker-alt me-2"></i>Dirección
-                        </h5>
-                        <p class="text-muted">{{ empresa.direccion }}</p>
-                    </div>
-                    
-                    <div class="col-md-6 mb-3">
-                        <h5 class="text-cosmetics-gold">
-                            <i class="fas fa-calendar-alt me-2"></i>Año de Fundación
-                        </h5>
-                        <p class="text-muted">{{ empresa.anio_fundacion }}</p>
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <h5 class="text-cosmetics-gold">
-                        <i class="fas fa-id-card me-2"></i>RUC
-                    </h5>
-                    <p class="text-muted">{{ empresa.ruc }}</p>
-                </div>
-                
-                <div class="mb-4">
-                    <h5 class="text-cosmetics-pink">
-                        <i class="fas fa-bullseye me-2"></i>Nuestra Misión
-                    </h5>
-                    <div class="p-3 rounded" style="background-color: var(--cosmetics-nude);">
-                        <p class="mb-0">{{ empresa.mision }}</p>
-                    </div>
-                </div>
-                
-                <div class="mb-4">
-                    <h5 class="text-cosmetics-rose-gold">
-                        <i class="fas fa-eye me-2"></i>Nuestra Visión
-                    </h5>
-                    <div class="p-3 rounded" style="background-color: var(--cosmetics-cream);">
-                        <p class="mb-0">{{ empresa.vision }}</p>
-                    </div>
-                </div>
-                
-                <div class="text-center">
-                    <a href="{% url 'empresa:update' %}" class="btn btn-cosmetics-primary btn-lg">
-                        <i class="fas fa-edit me-2"></i>EDITAR INFORMACIÓN
-                    </a>
-                </div>
+            <div class="mb-3">
+                <strong>DIRECCIÓN:</strong> {{ empresa.direccion }}
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Company Statistics -->
-<div class="row mt-5">
-    <div class="col-md-3 mb-3">
-        <div class="card card-cosmetic text-center">
-            <div class="card-body">
-                <i class="fas fa-calendar text-cosmetics-pink fa-3x mb-2"></i>
-                <h4 class="text-cosmetics-charcoal">{{ empresa.anos_experiencia }} Años</h4>
-                <p class="text-muted">de experiencia</p>
+        
+        <!-- Company Image -->
+        {% if empresa.imagen %}
+            <div class="text-center mb-4">
+                <div class="empresa-image-container">
+                    <img src="{{ empresa.imagen.url }}" alt="{{ empresa.nombre }}" class="empresa-image">
+                </div>
             </div>
+        {% endif %}
+        
+        <!-- Founding Year -->
+        <div class="text-center">
+            <h5 class="text-cosmetics-charcoal">AÑO DE FUNDACIÓN</h5>
+            <p class="text-muted fs-5">{{ empresa.anio_fundacion }}</p>
         </div>
     </div>
-    <div class="col-md-3 mb-3">
-        <div class="card card-cosmetic text-center">
-            <div class="card-body">
-                <i class="fas fa-users text-cosmetics-gold fa-3x mb-2"></i>
-                <h4 class="text-cosmetics-charcoal">Equipo</h4>
-                <p class="text-muted">Profesional</p>
-            </div>
+    
+    <!-- Right Column: Edit Button, Mission, and Vision -->
+    <div class="col-md-6">
+        <!-- Edit Button -->
+        <div class="text-end mb-3">
+            <a href="{% url 'empresa:update' %}" class="btn btn-outline-dark px-4 py-2">
+                EDITAR INFORMACION
+            </a>
         </div>
-    </div>
-    <div class="col-md-3 mb-3">
-        <div class="card card-cosmetic text-center">
-            <div class="card-body">
-                <i class="fas fa-award text-cosmetics-rose-gold fa-3x mb-2"></i>
-                <h4 class="text-cosmetics-charcoal">Calidad</h4>
-                <p class="text-muted">Garantizada</p>
-            </div>
+        
+        <!-- Mission -->
+        <div class="mb-5">
+            <h4 class="text-cosmetics-charcoal mb-3">MISION</h4>
+            <p class="text-muted">{{ empresa.mision }}</p>
         </div>
-    </div>
-    <div class="col-md-3 mb-3">
-        <div class="card card-cosmetic text-center">
-            <div class="card-body">
-                <i class="fas fa-heart text-cosmetics-pink fa-3x mb-2"></i>
-                <h4 class="text-cosmetics-charcoal">Belleza</h4>
-                <p class="text-muted">Natural</p>
-            </div>
+        
+        <!-- Vision -->
+        <div class="mb-4">
+            <h4 class="text-cosmetics-charcoal mb-3">VISION</h4>
+            <p class="text-muted">{{ empresa.vision }}</p>
         </div>
     </div>
 </div>
