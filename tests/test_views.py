@@ -209,7 +209,7 @@ class EmpresaViewTest(TestCase):
 
     def test_empresa_delete_redirects_to_detail(self):
         """Test empresa delete redirects to detail page (shows no_info template)"""
-        empresa = Empresa.objects.create(**self.empresa_data)
+        Empresa.objects.create(**self.empresa_data)
         url = reverse("empresa:delete")
 
         response = self.client.post(url)
