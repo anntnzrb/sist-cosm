@@ -16,16 +16,12 @@
 </div>
     <div class="proveedores-grid">
         {% for proveedor in proveedores %}
-            <div class="card card-cosmetic fade-in">
+            <div class="card card-cosmetic fade-in d-flex flex-column h-100">
                 <div class="card-header">
                     <h5 class="mb-0">{{ proveedor.nombre }}</h5>
                 </div>
                 
-                <div class="text-center py-4" style="background: linear-gradient(135deg, var(--cosmetics-nude), var(--cosmetics-rose-gold));">
-                    <i class="fas fa-building text-cosmetics-pink fa-4x"></i>
-                </div>
-                
-                <div class="card-body">
+                <div class="card-body d-flex flex-column flex-grow-1">
                     <p class="card-text">
                         <strong><i class="fas fa-envelope me-2 text-cosmetics-pink"></i>Email:</strong><br>
                         {{ proveedor.correo }}
@@ -38,20 +34,10 @@
                         <strong><i class="fas fa-globe me-2 text-cosmetics-rose-gold"></i>País:</strong><br>
                         {{ proveedor.pais }}
                     </p>
-                    <p class="card-text">
-                        <strong><i class="fas fa-map-marker-alt me-2 text-cosmetics-charcoal"></i>Dirección:</strong><br>
-                        {{ proveedor.direccion|truncatewords:10 }}
-                    </p>
                     
-                    <div class="action-buttons mt-3">
-                        <a href="{% url 'proveedores:update' proveedor.pk %}" class="btn btn-cosmetics-secondary btn-sm">
-                            <i class="fas fa-edit me-1"></i>Editar
-                        </a>
-                        <a href="{% url 'proveedores:delete' proveedor.pk %}" class="btn btn-cosmetics-danger btn-sm" 
-                           data-confirm="¿Está seguro de eliminar a {{ proveedor.nombre }}?">
-                            <i class="fas fa-trash me-1"></i>Eliminar
-                        </a>
-                    </div>
+                    {% url 'proveedores:update' proveedor.pk as update_url %}
+                    {% url 'proveedores:delete' proveedor.pk as delete_url %}
+                    {% include 'shared/action_buttons.html' with update_url=update_url delete_url=delete_url confirm_message="¿Está seguro de eliminar a "|add:proveedor.nombre|add:"?" %}
                 </div>
             </div>
         {% endfor %}
