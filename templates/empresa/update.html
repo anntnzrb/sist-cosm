@@ -129,15 +129,19 @@
                 </div>
                 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3">
-                        <i class="fas fa-save me-2"></i>Actualizar Información
+                    <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3" title="Actualizar Información">
+                        <i class="fas fa-save"></i>
                     </button>
-                    <a href="{% url 'empresa:detail' %}" class="btn btn-cosmetics-secondary btn-lg">
-                        <i class="fas fa-arrow-left me-2"></i>Cancelar
+                    <a href="{% url 'empresa:detail' %}" class="btn btn-cosmetics-secondary btn-lg me-3" title="Cancelar">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a href="{% url 'empresa:delete' %}" class="btn btn-danger btn-lg" title="Eliminar Información">
+                        <i class="fas fa-trash"></i>
                     </a>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 {% endblock %}
