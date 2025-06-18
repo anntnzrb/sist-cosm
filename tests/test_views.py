@@ -177,6 +177,45 @@ class EmpresaViewTest(TestCase):
         empresa.refresh_from_db()
         self.assertEqual(empresa.nombre, "Cosméticos Premium")
 
+    def test_empresa_delete_view_get(self):
+        """Test empresa delete view GET request"""
+        empresa = Empresa.objects.create(**self.empresa_data)
+        url = reverse("empresa:delete")
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["object"], empresa)
+        self.assertContains(response, "Confirmar Eliminación")
+        self.assertContains(response, empresa.nombre)
+
+    def test_empresa_delete_view_post(self):
+        """Test empresa delete view POST request"""
+        empresa = Empresa.objects.create(**self.empresa_data)
+        url = reverse("empresa:delete")
+
+        response = self.client.post(url)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(Empresa.objects.filter(pk=empresa.pk).exists())
+
+    def test_empresa_delete_view_no_empresa(self):
+        """Test empresa delete view when no company exists"""
+        url = reverse("empresa:delete")
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_empresa_delete_redirects_to_detail(self):
+        """Test empresa delete redirects to detail page (shows no_info template)"""
+        empresa = Empresa.objects.create(**self.empresa_data)
+        url = reverse("empresa:delete")
+
+        response = self.client.post(url)
+
+        self.assertRedirects(response, reverse("empresa:detail"))
+
 
 class ProductoViewTest(TestCase):
     """Test cases for Producto views"""
