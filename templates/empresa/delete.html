@@ -1,0 +1,35 @@
+{% extends 'shared/delete_base.html' %}
+
+{% block delete_page_title %}Eliminar Información de Empresa - Cosmetics Store{% endblock %}
+
+{% block delete_title %}<i class="fas fa-building-slash me-3 text-cosmetics-danger"></i>ELIMINAR INFORMACIÓN DE EMPRESA{% endblock %}
+
+{% block delete_description %}Confirme la eliminación de toda la información corporativa{% endblock %}
+
+{% block object_image %}
+{% if object.imagen %}
+    <div class="empresa-image-container mb-3 mx-auto">
+        <img src="{{ object.imagen.url }}" alt="{{ object.nombre }}" class="empresa-image">
+    </div>
+{% else %}
+    <i class="fas fa-building text-cosmetics-pink fa-5x mb-3"></i>
+{% endif %}
+{% endblock %}
+
+{% block object_details %}
+<h4 class="text-cosmetics-charcoal">{{ object.nombre }}</h4>
+<p class="text-muted">RUC: {{ object.ruc }}</p>
+<p class="text-muted">{{ object.direccion }}</p>
+{% endblock %}
+
+{% block warning_message %}
+Se eliminará permanentemente:
+<ul class="list-unstyled mt-2 mb-0">
+    <li><i class="fas fa-check me-1"></i> Información básica de la empresa</li>
+    <li><i class="fas fa-check me-1"></i> Misión y visión corporativa</li>
+    <li><i class="fas fa-check me-1"></i> Logo/imagen corporativa</li>
+    <li><i class="fas fa-check me-1"></i> Todos los datos registrados</li>
+</ul>
+{% endblock %}
+
+{% block cancel_url %}{% url 'empresa:update' %}{% endblock %}

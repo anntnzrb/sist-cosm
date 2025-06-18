@@ -1,8 +1,9 @@
 from django.contrib import messages
+from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from .forms import EmpresaForm
 from .models import Empresa
@@ -50,3 +51,21 @@ class EmpresaUpdateView(UpdateView):
             self.request, "Información de empresa actualizada exitosamente."
         )
         return super().form_valid(form)
+
+
+class EmpresaDeleteView(DeleteView):
+    model = Empresa
+    template_name = "empresa/delete.html"
+    success_url = reverse_lazy("empresa:detail")
+
+    def get_object(self):
+        try:
+            return Empresa.objects.get()
+        except Empresa.DoesNotExist:
+            raise Http404("No company information exists to delete")
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(
+            self.request, "Información de empresa eliminada exitosamente."
+        )
+        return super().delete(request, *args, **kwargs)
