@@ -6,11 +6,10 @@
 {% block content %}
 <div class="page-header">
     <h1><i class="fas fa-users me-3"></i>NUESTRO PERSONAL</h1>
-    <p>Conoce a nuestro equipo de expertos en belleza y cosméticos</p>
 </div>
 
 {% if trabajadores %}
-<div class="text-center mb-4">
+<div class="text-end mb-4">
     <a href="{% url 'trabajadores:create' %}" class="btn btn-cosmetics-primary btn-lg">
         <i class="fas fa-plus me-2"></i>AGREGAR TRABAJADOR
     </a>
@@ -31,7 +30,18 @@
                         </div>
                         <div class="col-8">
                             <div class="card-body card-body-horizontal-compact">
-                                <h6 class="card-title text-cosmetics-primary mb-2">{{ trabajador.nombre }} {{ trabajador.apellido }}</h6>
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="card-title text-cosmetics-primary mb-0">{{ trabajador.nombre }} {{ trabajador.apellido }}</h6>
+                                    <div class="action-buttons-compact">
+                                        <a href="{% url 'trabajadores:update' trabajador.pk %}" class="btn btn-cosmetics-secondary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'trabajadores:delete' trabajador.pk %}" class="btn btn-cosmetics-danger btn-sm" 
+                                           data-confirm="¿Está seguro de eliminar a {{ trabajador.nombre }} {{ trabajador.apellido }}?">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
                                 
                                 <p class="card-text small mb-1">
                                     <i class="fas fa-envelope me-1 text-cosmetics-pink"></i>
@@ -45,16 +55,6 @@
                                     <i class="fas fa-badge-check me-1 text-cosmetics-rose-gold"></i>
                                     <span class="text-muted">{{ trabajador.codigo_empleado }}</span>
                                 </p>
-                                
-                                <div class="action-buttons-compact mt-2">
-                                    <a href="{% url 'trabajadores:update' trabajador.pk %}" class="btn btn-cosmetics-secondary btn-sm">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="{% url 'trabajadores:delete' trabajador.pk %}" class="btn btn-cosmetics-danger btn-sm" 
-                                       data-confirm="¿Está seguro de eliminar a {{ trabajador.nombre }} {{ trabajador.apellido }}?">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
