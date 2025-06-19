@@ -1,7 +1,13 @@
+---
+tipo_tienda: "tienda de cosméticos"
+version: "1.0"
+fecha: "2025"
+---
+
 # Aplicación Web Django - Documento de Requerimientos del Producto
 
 ## Descripción General del Proyecto
-Desarrollar una aplicación web completa para una **tienda de cosméticos** usando el framework Django con integración a base de datos PostgreSQL, implementando el patrón de diseño MVC (Modelo-Vista-Controlador) en Python con operaciones CRUD completas para múltiples entidades de negocio.
+Desarrollar una aplicación web completa para una **{{ tipo_tienda }}** usando el framework Django con integración a base de datos PostgreSQL, implementando el patrón de diseño MVC (Modelo-Vista-Controlador) en Python con operaciones CRUD completas para múltiples entidades de negocio.
 
 ## Stack Tecnológico
 - **Python**: 3.13
@@ -94,15 +100,15 @@ DATABASES = {
 
 #### 1. Página Principal (Contenido Estático)
 - **Ruta**: `/`
-- **Contenido**: Información estática sobre la tienda de cosméticos (NO depende de base de datos)
+- **Contenido**: Información estática sobre la {{ tipo_tienda }} (NO depende de base de datos)
 - **Implementación**: Directamente en HTML (sin datos dinámicos)
 - **Estructura**:
-  - Título del sitio web + Logo de la tienda de cosméticos
-  - Sección "DESCRIPCION DE LA EMPRESA" con carrusel de imágenes (4 imágenes relacionadas con cosméticos)
-  - Sección "HISTORIA DE LA EMPRESA" con carrusel de imágenes (4 imágenes sobre la historia de la tienda)
+  - Título del sitio web + Logo de la {{ tipo_tienda }}
+  - Sección "DESCRIPCION DE LA EMPRESA" con carrusel de imágenes (4 imágenes relacionadas con la {{ tipo_tienda }})
+  - Sección "HISTORIA DE LA EMPRESA" con carrusel de imágenes (4 imágenes sobre la historia de la {{ tipo_tienda }})
   - Menú de navegación
 
-**IMPORTANTE**: Esta página debe ser completamente estática, codificada directamente en HTML con contenido relacionado a la tienda de cosméticos.
+**IMPORTANTE**: Esta página debe ser completamente estática, codificada directamente en HTML con contenido relacionado a la {{ tipo_tienda }}.
 
 #### 2. Página Nosotros (`/nosotros/`)
 - **Lógica de navegación**:
@@ -110,35 +116,33 @@ DATABASES = {
     - Mostrar "NO SE HA INGRESADO INFORMACION DE LA EMPRESA!!" 
     - Botón "AGREGAR INFORMACION" → redirige a formulario de creación
   - **Cuando existe información de empresa**: 
-    - Acceso directo muestra la información de la tienda de cosméticos (nombre, RUC, dirección, misión, visión, año de fundación, imagen)
+    - Acceso directo muestra la información de la {{ tipo_tienda }} (nombre, RUC, dirección, misión, visión, año de fundación, imagen)
     - Botón "EDITAR INFORMACION" → redirige a formulario de edición
-- **Nota**: Solo una empresa en el sistema (la tienda de cosméticos)
+- **Nota**: Solo una empresa en el sistema (la {{ tipo_tienda }})
 
 #### 3. Página Trabajadores (`/trabajadores/`)
 - **Título de sección**: "NUESTRO PERSONAL"
 - **Características**:
-  - Mostrar todos los trabajadores de la tienda de cosméticos en formato de tarjetas (2 columnas, 2 filas)
+  - Mostrar todos los trabajadores de la {{ tipo_tienda }} en formato de tarjetas (2 columnas, 2 filas)
   - Botón "AGREGAR TRABAJADOR" → redirige a formulario de creación
-  - Tarjetas individuales mostrando: imagen del colaborador, nombre, correo, tipo de trabajador (ej: consultor de belleza, vendedor, maquillador), código de empleado
+  - Tarjetas individuales mostrando: imagen del colaborador, nombre, correo, código de empleado
   - Botones editar/eliminar funcionales para cada trabajador
 
 #### 4. Página Productos (`/productos/`)
 - **Título de sección**: "NUESTROS PRODUCTOS"
 - **Características**:
-  - Mostrar todos los productos cosméticos en formato de grilla (3 columnas)
+  - Mostrar todos los productos de la {{ tipo_tienda }} en formato de grilla (3 columnas)
   - Botón "AGREGAR PRODUCTO" → redirige a formulario de creación
-  - Tarjetas de productos mostrando: imagen del cosmético, nombre del producto, precio, información de IVA (15% o 0%)
+  - Tarjetas de productos mostrando: imagen del producto, nombre, precio, información de IVA (15% o 0%)
   - Botones editar/eliminar funcionales para cada producto
-- **Ejemplos de productos**: maquillaje, skincare, fragancias, accesorios de belleza, etc.
 
 #### 5. Página Proveedores (`/proveedores/`)
 - **Título de sección**: "NUESTROS PROVEEDORES"
 - **Características**:
-  - Mostrar todos los proveedores de cosméticos en formato de tarjetas (3 columnas, 2 filas)
+  - Mostrar todos los proveedores de la {{ tipo_tienda }} en formato de tarjetas (3 columnas, 2 filas)
   - Botón "AGREGAR PROVEEDOR" → redirige a formulario de creación
   - Tarjetas de proveedores mostrando: nombre, correo, teléfono, país (sin imagen)
   - Botones editar/eliminar funcionales para cada proveedor
-- **Ejemplos de proveedores**: marcas de maquillaje, distribuidores de skincare, proveedores de fragancias, etc.
 
 ### Funcionalidad de Botones CRUD (Requisito Crítico)
 
@@ -226,10 +230,10 @@ uv add Pillow  # para soporte de ImageField
 - Sin sistema de autenticación requerido
 
 ## Notas Adicionales
-- **Temática del sitio web**: Tienda de cosméticos
-- **Paleta de colores sugerida**: Colores apropiados para tienda de cosméticos (tonos rosados, dorados, neutros elegantes, blancos, etc.)
+- **Temática del sitio web**: {{ tipo_tienda }}
+- **Paleta de colores sugerida**: Colores apropiados para la {{ tipo_tienda }}
 - **Patrón de diseño**: Implementar correctamente el patrón MVC de Django
-- **Contenido visual**: Las imágenes y diseño deben reflejar la elegancia y estética propia de una tienda de cosméticos
+- **Contenido visual**: Las imágenes y diseño deben reflejar la estética propia de la {{ tipo_tienda }}
 
 # Python Coding Guidelines (Updated 2025)
 
