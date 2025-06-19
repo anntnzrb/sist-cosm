@@ -1,0 +1,32 @@
+{% extends 'shared/form_base.html' %}
+
+{% comment %}
+DEMO: productos/create.html converted to use new form components
+This demonstrates how the original 103-line template is reduced to just 25 lines
+Original template had 78 lines of repetitive form field code that is now eliminated
+{% endcomment %}
+
+{% block form_title %}Agregar Producto - Cosmetics Store{% endblock %}
+{% block page_icon %}fas fa-plus-circle{% endblock %}
+{% block page_title %}AGREGAR PRODUCTO{% endblock %}
+{% block page_description %}Añade un nuevo producto cosmético a nuestra colección{% endblock %}
+
+{% block form_fields %}
+    {% include 'shared/form_field.html' with field=form.nombre icon='fas fa-palette' color='text-cosmetics-pink' %}
+    
+    {% include 'shared/form_field.html' with field=form.descripcion icon='fas fa-align-left' color='text-cosmetics-gold' %}
+    
+    <div class="row">
+        <div class="col-md-6">
+            {% include 'shared/form_field.html' with field=form.precio icon='fas fa-dollar-sign' color='text-cosmetics-rose-gold' width='mb-3' %}
+        </div>
+        <div class="col-md-6">
+            {% include 'shared/form_field.html' with field=form.iva icon='fas fa-percent' color='text-cosmetics-charcoal' width='mb-3' %}
+        </div>
+    </div>
+    
+    {% include 'shared/image_field.html' with field=form.imagen %}
+{% endblock %}
+
+{% block submit_text %}Guardar Producto{% endblock %}
+{% block cancel_url %}{% url 'productos:list' %}{% endblock %}
