@@ -21,6 +21,39 @@
     --gradient-primary: linear-gradient(135deg, #b85a72, #d4a6b4);
     --gradient-accent: linear-gradient(135deg, #d4a574, #f0e6d6);
     --gradient-background: linear-gradient(135deg, #fefbf7, #f5f3f1);
+    
+    /* Spacing Variables */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 2.5rem;
+    --spacing-xxl: 3rem;
+    
+    /* Border Radius Variables */
+    --border-radius-sm: 12px;
+    --border-radius-md: 15px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 20px;
+    --border-radius-pill: 30px;
+    --border-radius-circle: 50%;
+    
+    /* Box Shadow Variables */
+    --box-shadow-sm: 0 2px 15px rgba(180, 90, 114, 0.1);
+    --box-shadow-md: 0 4px 20px rgba(180, 90, 114, 0.08);
+    --box-shadow-lg: 0 8px 25px rgba(180, 90, 114, 0.1);
+    --box-shadow-xl: 0 8px 30px rgba(180, 90, 114, 0.2);
+    --box-shadow-button: 0 4px 15px rgba(180, 90, 114, 0.2);
+    --box-shadow-button-hover: 0 8px 25px rgba(180, 90, 114, 0.3);
+    --box-shadow-accent: 0 4px 15px rgba(212, 165, 116, 0.2);
+    --box-shadow-accent-hover: 0 8px 25px rgba(212, 165, 116, 0.3);
+    --box-shadow-danger: 0 4px 15px rgba(220, 53, 69, 0.2);
+    --box-shadow-danger-hover: 0 8px 25px rgba(220, 53, 69, 0.3);
+    
+    /* Transition Variables */
+    --transition-base: all 0.3s ease;
+    --transition-transform: transform 0.3s ease;
+    --transition-color: color 0.3s ease;
 }
 
 /* Global Styles */
@@ -37,14 +70,14 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
     line-height: 1.3;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-sm);
 }
 
 /* Header Styles */
 .cosmetics-header {
     background: var(--gradient-background);
     border-bottom: 2px solid var(--cosmetics-rose-gold);
-    box-shadow: 0 2px 15px rgba(180, 90, 114, 0.1);
+    box-shadow: var(--box-shadow-sm);
     backdrop-filter: blur(10px);
 }
 
@@ -73,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Navigation Styles */
 .cosmetics-header .navbar {
     border-top: 1px solid var(--cosmetics-light-gray);
-    padding-top: 1rem;
+    padding-top: var(--spacing-sm);
 }
 
 .cosmetics-header .nav-link {
@@ -81,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     padding: 0.75rem 1.25rem !important;
     border-radius: 25px;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     margin: 0 0.25rem;
     position: relative;
 }
@@ -111,9 +144,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Card Styles */
 .card-cosmetic {
     border: 1px solid var(--cosmetics-light-gray);
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(180, 90, 114, 0.08);
-    transition: all 0.3s ease;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-md);
+    transition: var(--transition-base);
     background: var(--cosmetics-cream);
     overflow: hidden;
 }
@@ -135,69 +168,64 @@ h1, h2, h3, h4, h5, h6 {
 .card-cosmetic img {
     height: 200px;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: var(--border-radius-md);
     margin: 10px;
     width: calc(100% - 20px);
 }
 
 /* Button Styles */
-.btn-cosmetics-primary {
-    background: var(--gradient-primary);
+.btn-cosmetics-base {
     border: none;
-    border-radius: 30px;
-    color: white;
+    border-radius: var(--border-radius-pill);
     padding: 14px 32px;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(180, 90, 114, 0.2);
+    transition: var(--transition-base);
     letter-spacing: 0.3px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-cosmetics-base:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.btn-cosmetics-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--box-shadow-button);
 }
 
 .btn-cosmetics-primary:hover {
     background: linear-gradient(135deg, var(--cosmetics-primary-dark), var(--cosmetics-primary));
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(180, 90, 114, 0.3);
+    box-shadow: var(--box-shadow-button-hover);
     color: white;
 }
 
 .btn-cosmetics-secondary {
     background: var(--gradient-accent);
-    border: none;
-    border-radius: 30px;
     color: var(--cosmetics-charcoal);
-    padding: 14px 32px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.2);
-    letter-spacing: 0.3px;
+    box-shadow: var(--box-shadow-accent);
 }
 
 .btn-cosmetics-secondary:hover {
     background: linear-gradient(135deg, var(--cosmetics-copper), var(--cosmetics-rose-gold));
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+    box-shadow: var(--box-shadow-accent-hover);
     color: white;
 }
 
 .btn-cosmetics-danger {
     background: linear-gradient(135deg, #dc3545, #e57373);
-    border: none;
-    border-radius: 30px;
     color: white;
-    padding: 14px 32px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
-    letter-spacing: 0.3px;
+    box-shadow: var(--box-shadow-danger);
 }
 
 .btn-cosmetics-danger:hover {
     background: linear-gradient(135deg, #c82333, #dc3545);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+    box-shadow: var(--box-shadow-danger-hover);
     color: white;
 }
 
@@ -209,9 +237,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-cosmetic {
     background: var(--cosmetics-cream);
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(180, 90, 114, 0.1);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-lg);
     border: 1px solid var(--cosmetics-light-gray);
 }
 
@@ -219,7 +247,7 @@ h1, h2, h3, h4, h5, h6 {
 .trabajadores-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: var(--spacing-lg);
     max-width: 800px;
     margin: 0 auto;
 }
@@ -240,31 +268,31 @@ h1, h2, h3, h4, h5, h6 {
 .productos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: var(--spacing-lg);
 }
 
 .proveedores-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    gap: var(--spacing-lg);
 }
 
 /* Page Headers */
 .page-header {
     text-align: center;
-    margin-bottom: 3rem;
-    padding: 3rem 2rem;
+    margin-bottom: var(--spacing-xxl);
+    padding: var(--spacing-xxl) var(--spacing-lg);
     background: var(--gradient-background);
-    border-radius: 16px;
+    border-radius: var(--border-radius-lg);
     border: 1px solid var(--cosmetics-light-gray);
-    box-shadow: 0 4px 20px rgba(180, 90, 114, 0.08);
+    box-shadow: var(--box-shadow-md);
 }
 
 .page-header h1,
 .page-header h2 {
     color: var(--cosmetics-primary-dark);
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-sm);
     letter-spacing: -0.5px;
 }
 
@@ -279,17 +307,17 @@ h1, h2, h3, h4, h5, h6 {
 .hero-section {
     background: var(--gradient-primary);
     color: white;
-    padding: 5rem 2rem;
-    border-radius: 20px;
+    padding: 5rem var(--spacing-lg);
+    border-radius: var(--border-radius-xl);
     margin-bottom: 4rem;
     text-align: center;
-    box-shadow: 0 8px 30px rgba(180, 90, 114, 0.2);
+    box-shadow: var(--box-shadow-xl);
 }
 
 .hero-section h1 {
     font-size: 3.2rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-md);
     letter-spacing: -1px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -297,7 +325,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-section .lead {
     font-size: 1.3rem;
     font-weight: 400;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-sm);
     opacity: 0.95;
 }
 
@@ -312,22 +340,22 @@ h1, h2, h3, h4, h5, h6 {
 .carousel-item img {
     height: 400px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
 }
 
 .carousel {
-    margin-bottom: 3rem;
+    margin-bottom: var(--spacing-xxl);
     margin-left: 100px;
     margin-right: 100px;
 }
 
 .carousel-inner {
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     overflow: hidden;
 }
 
 .carousel-item {
-    padding: 2rem;
+    padding: var(--spacing-lg);
     min-height: 450px;
 }
 
@@ -353,12 +381,12 @@ h1, h2, h3, h4, h5, h6 {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: var(--cosmetics-primary);
-    border-radius: 50%;
+    border-radius: var(--border-radius-circle);
     width: 40px;
     height: 40px;
     background-size: 60%;
-    box-shadow: 0 4px 15px rgba(180, 90, 114, 0.2);
-    transition: all 0.3s ease;
+    box-shadow: var(--box-shadow-button);
+    transition: var(--transition-base);
 }
 
 .carousel-control-prev:hover .carousel-control-prev-icon,
@@ -370,12 +398,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .carousel-indicators button {
     background-color: var(--cosmetics-primary);
-    border-radius: 50%;
+    border-radius: var(--border-radius-circle);
     width: 12px;
     height: 12px;
     margin: 0 5px;
     opacity: 0.7;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .carousel-indicators button.active {
@@ -395,13 +423,13 @@ h1, h2, h3, h4, h5, h6 {
 /* Action Buttons */
 .action-buttons {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: var(--spacing-sm);
 }
 
 .action-buttons .btn {
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     padding: 8px 16px;
     font-size: 0.9rem;
 }
@@ -415,7 +443,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 180px;
     width: 100%;
     object-fit: cover;
-    border-radius: 15px 0 0 15px;
+    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
 }
 
 .card-img-placeholder {
@@ -424,18 +452,18 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, var(--cosmetics-champagne), var(--cosmetics-rose-gold));
-    border-radius: 15px 0 0 15px;
+    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
 }
 
 .card-body-horizontal {
-    padding: 1.5rem;
+    padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .card-body-horizontal-compact {
-    padding: 1rem;
+    padding: var(--spacing-sm);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -445,17 +473,17 @@ h1, h2, h3, h4, h5, h6 {
 .card-header-horizontal {
     border-bottom: 1px solid var(--cosmetics-light-gray);
     padding-bottom: 0.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-sm);
 }
 
 .action-buttons-compact {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
     justify-content: flex-start;
 }
 
 .action-buttons-compact .btn {
-    border-radius: 15px;
+    border-radius: var(--border-radius-md);
     padding: 6px 12px;
     font-size: 0.8rem;
 }

@@ -1,0 +1,12 @@
+{% comment %}
+Reusable page header component
+Parameters:
+- icon: FontAwesome icon class (e.g., "fas fa-shopping-bag")
+- title: Page title text
+- centered: Boolean to center the header (optional, defaults to false)
+- css_classes: Additional CSS classes for the header container (optional)
+{% endcomment %}
+
+<div class="page-header{% if centered %} text-center{% endif %}{% if css_classes %} {{ css_classes }}{% endif %}">
+    <h1><i class="{{ icon }} me-3"></i>{{ title }}</h1>
+</div>

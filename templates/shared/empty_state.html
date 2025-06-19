@@ -1,0 +1,23 @@
+{% comment %}
+Reusable empty state component for list templates
+Parameters:
+- icon: FontAwesome icon class (e.g., "fas fa-shopping-bag")
+- title: Main title for the empty state
+- description: Description text explaining the empty state
+- action_url: URL for the primary action button
+- action_text: Text for the primary action button
+- action_icon: Icon for the action button (optional, defaults to "fas fa-plus")
+{% endcomment %}
+
+<div class="text-center py-5">
+    <div class="card card-cosmetic" style="max-width: 500px; margin: 0 auto;">
+        <div class="card-body">
+            <i class="{{ icon }} text-cosmetics-pink fa-4x mb-3"></i>
+            <h4 class="text-cosmetics-charcoal">{{ title }}</h4>
+            <p class="text-muted">{{ description }}</p>
+            <a href="{{ action_url }}" class="btn btn-cosmetics-primary">
+                <i class="{% if action_icon %}{{ action_icon }}{% else %}fas fa-plus{% endif %} me-2"></i>{{ action_text }}
+            </a>
+        </div>
+    </div>
+</div>
