@@ -1,0 +1,39 @@
+{% comment %}
+Image field component for file upload fields with consistent styling and help text
+Usage: {% include 'shared/image_field.html' with field=form.imagen help_text="Custom help text" col_class="mb-4" object=object %}
+
+Parameters:
+- field: Django form field (required)
+- help_text: Custom help text (optional, defaults to standard file upload help)
+- col_class: Column and spacing classes (optional, defaults to "mb-4")  
+- object: Model instance for showing existing image (optional, for update forms)
+{% endcomment %}
+
+<div class="{% if col_class %}{{ col_class }}{% else %}mb-4{% endif %}">
+    <label for="{{ field.id_for_label }}" class="form-label">
+        <i class="fas fa-camera me-2 text-cosmetics-pink"></i>{{ field.label }}
+    </label>
+    
+    {% if object and object.imagen %}
+        <div class="mb-2">
+            <img src="{{ object.imagen.url }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 150px;">
+            <small class="text-muted d-block">Imagen actual</small>
+        </div>
+    {% endif %}
+    
+    {{ field }}
+    <div class="form-text">
+        {% if help_text %}
+            {{ help_text }}
+        {% else %}
+            Formatos aceptados: JPG, PNG, GIF. Tamaño máximo: 5MB
+        {% endif %}
+    </div>
+    {% if field.errors %}
+        <div class="text-danger mt-1">
+            {% for error in field.errors %}
+                <small>{{ error }}</small><br>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

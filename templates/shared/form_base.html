@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="{% block form_icon %}fas fa-plus-circle{% endblock %} me-3"></i>{% block form_title %}TÍTULO DE FORMULARIO{% endblock %}</h1>
+    <p>{% block form_description %}Descripción del formulario{% endblock %}</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="{% block form_col_class %}col-md-8{% endblock %}">
+        <div class="form-cosmetic">
+            <form method="post" {% block form_attrs %}class="needs-validation" novalidate{% endblock %}>
+                {% csrf_token %}
+                
+                {% block form_fields %}
+                <!-- Form fields will be included here -->
+                {% endblock %}
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3">
+                        <i class="fas fa-save me-2"></i>{% block submit_text %}Guardar{% endblock %}
+                    </button>
+                    <a href="{% block cancel_url %}#{% endblock %}" class="btn btn-cosmetics-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
