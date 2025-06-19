@@ -1,0 +1,75 @@
+{% comment %}
+Carousel Component
+A reusable component for displaying image carousels with consistent styling.
+
+Parameters:
+- carousel_id: Unique identifier for the carousel (required)
+- images: List of image objects/dictionaries with 'src' and 'alt' keys (required)
+- indicators_count: Number of indicators (defaults to images count)
+- height: Optional height for images (defaults to 400px)
+- auto_slide: Boolean to enable auto-sliding (defaults to true)
+- show_indicators: Boolean to show/hide indicators (defaults to true)
+- show_controls: Boolean to show/hide prev/next controls (defaults to true)
+
+Usage:
+{% include 'shared/carousel.html' with carousel_id='myCarousel' images=image_list %}
+
+With custom options:
+{% include 'shared/carousel.html' with carousel_id='products' images=product_images height='300px' auto_slide=False %}
+
+Image format should be:
+images = [
+    {'src': '/media/image1.jpg', 'alt': 'Description 1'},
+    {'src': '/media/image2.jpg', 'alt': 'Description 2'},
+]
+{% endcomment %}
+
+{% if images %}
+<div id="{{ carousel_id }}" class="carousel slide{% if auto_slide|default:True %} carousel-fade{% endif %}" 
+     {% if auto_slide|default:True %}data-bs-ride="carousel"{% endif %}>
+    
+    {% if show_indicators|default:True and images|length > 1 %}
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators">
+        {% for image in images %}
+            <button type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide-to="{{ forloop.counter0 }}" 
+                    {% if forloop.first %}class="active" aria-current="true"{% endif %}
+                    aria-label="Slide {{ forloop.counter }}"></button>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Carousel Inner -->
+    <div class="carousel-inner">
+        {% for image in images %}
+            <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                <div style="height: {{ height|default:'400px' }}; border-radius: 20px; overflow: hidden;">
+                    <img src="{{ image.src }}" 
+                         alt="{{ image.alt|default:'Imagen del carrusel' }}" 
+                         style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;"
+                         loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    {% if show_controls|default:True and images|length > 1 %}
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+    {% endif %}
+</div>
+
+{% else %}
+<!-- Fallback for empty carousel -->
+<div class="text-center p-5 bg-light rounded">
+    <i class="fas fa-images fa-3x text-muted mb-3"></i>
+    <p class="text-muted">No hay imágenes disponibles para mostrar</p>
+</div>
+{% endif %}
