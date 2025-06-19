@@ -94,9 +94,9 @@ DATABASES = {
 ### Estructura de Páginas y Navegación
 
 **Estructura común en todas las páginas**:
-- Título del sitio web + Logo de la tienda de cosméticos (parte superior)
+- Título del sitio web + Logo de la {{ tipo_tienda }} (parte superior)
 - Menú de navegación estándar
-- Contenido específico de cada página con estética apropiada para cosméticos
+- Contenido específico de cada página con estética apropiada para la {{ tipo_tienda }}
 
 #### 1. Página Principal (Contenido Estático)
 - **Ruta**: `/`
@@ -104,8 +104,8 @@ DATABASES = {
 - **Implementación**: Directamente en HTML (sin datos dinámicos)
 - **Estructura**:
   - Título del sitio web + Logo de la {{ tipo_tienda }}
-  - Sección "DESCRIPCION DE LA EMPRESA" con carrusel de imágenes (4 imágenes relacionadas con la {{ tipo_tienda }})
-  - Sección "HISTORIA DE LA EMPRESA" con carrusel de imágenes (4 imágenes sobre la historia de la {{ tipo_tienda }})
+  - **Sección 1 - "DESCRIPCION DE LA EMPRESA"**: Carrusel de imágenes a la IZQUIERDA + Texto descriptivo a la DERECHA (4 imágenes relacionadas con la {{ tipo_tienda }})
+  - **Sección 2 - "HISTORIA DE LA EMPRESA"**: Texto narrativo a la IZQUIERDA + Carrusel de imágenes a la DERECHA (4 imágenes sobre la historia de la {{ tipo_tienda }})
   - Menú de navegación
 
 **IMPORTANTE**: Esta página debe ser completamente estática, codificada directamente en HTML con contenido relacionado a la {{ tipo_tienda }}.
@@ -113,36 +113,50 @@ DATABASES = {
 #### 2. Página Nosotros (`/nosotros/`)
 - **Lógica de navegación**:
   - **Cuando no existe información de empresa**: 
+    - **Layout**: Tarjeta centrada con icono de advertencia
     - Mostrar "NO SE HA INGRESADO INFORMACION DE LA EMPRESA!!" 
-    - Botón "AGREGAR INFORMACION" → redirige a formulario de creación
+    - Botón "AGREGAR INFORMACION" centrado → redirige a formulario de creación
   - **Cuando existe información de empresa**: 
-    - Acceso directo muestra la información de la {{ tipo_tienda }} (nombre, RUC, dirección, misión, visión, año de fundación, imagen)
+    - **Layout**: 2 columnas con distribución específica
+    - **Columna Izquierda**: Nombre de empresa, RUC, dirección, imagen (si existe), año de fundación
+    - **Columna Derecha**: Botón "EDITAR INFORMACION" (esquina superior derecha), misión, visión
     - Botón "EDITAR INFORMACION" → redirige a formulario de edición
 - **Nota**: Solo una empresa en el sistema (la {{ tipo_tienda }})
 
 #### 3. Página Trabajadores (`/trabajadores/`)
 - **Título de sección**: "NUESTRO PERSONAL"
 - **Características**:
-  - Mostrar todos los trabajadores de la {{ tipo_tienda }} en formato de tarjetas (2 columnas, 2 filas)
-  - Botón "AGREGAR TRABAJADOR" → redirige a formulario de creación
-  - Tarjetas individuales mostrando: imagen del colaborador, nombre, correo, código de empleado
-  - Botones editar/eliminar funcionales para cada trabajador
+  - Mostrar todos los trabajadores de la {{ tipo_tienda }} en formato de **tarjetas horizontales** (2 columnas)
+  - **Layout de tarjeta**: Imagen del trabajador a la IZQUIERDA + Información a la DERECHA
+  - **Botón "AGREGAR TRABAJADOR"**: Posicionado en la esquina superior derecha → redirige a formulario de creación
+  - **Información mostrada**: Imagen del colaborador, nombre completo, correo, cédula, código de empleado
+  - **Botones editar/eliminar**: Esquina superior derecha de cada tarjeta, completamente funcionales
+  - **Estado sin trabajadores**: Componente de estado vacío centrado con opción para agregar primer trabajador
 
 #### 4. Página Productos (`/productos/`)
 - **Título de sección**: "NUESTROS PRODUCTOS"
 - **Características**:
-  - Mostrar todos los productos de la {{ tipo_tienda }} en formato de grilla (3 columnas)
-  - Botón "AGREGAR PRODUCTO" → redirige a formulario de creación
-  - Tarjetas de productos mostrando: imagen del producto, nombre, precio, información de IVA (15% o 0%)
-  - Botones editar/eliminar funcionales para cada producto
+  - Mostrar todos los productos de la {{ tipo_tienda }} en formato de grilla (3 columnas) con **tarjetas verticales**
+  - **Layout de tarjeta**: Imagen del producto ARRIBA + Información ABAJO
+  - **Botón "AGREGAR PRODUCTO"**: Posicionado en la esquina superior derecha → redirige a formulario de creación
+  - **Información mostrada**: 
+    - Imagen del producto (con placeholder de gradiente e ícono si no existe imagen)
+    - Nombre del producto (centrado)
+    - **Formato de precio**: Precio principal + "% IVA" en línea secundaria
+  - **Botones editar/eliminar**: Parte inferior de cada tarjeta, completamente funcionales
+  - **Estado sin productos**: Componente de estado vacío centrado con opción para agregar primer producto
 
 #### 5. Página Proveedores (`/proveedores/`)
 - **Título de sección**: "NUESTROS PROVEEDORES"
 - **Características**:
-  - Mostrar todos los proveedores de la {{ tipo_tienda }} en formato de tarjetas (3 columnas, 2 filas)
-  - Botón "AGREGAR PROVEEDOR" → redirige a formulario de creación
-  - Tarjetas de proveedores mostrando: nombre, correo, teléfono, país (sin imagen)
-  - Botones editar/eliminar funcionales para cada proveedor
+  - Mostrar todos los proveedores de la {{ tipo_tienda }} en formato de grilla (3 columnas) con **tarjetas verticales**
+  - **Estructura de tarjeta**: Header con nombre del proveedor + Body con información detallada
+  - **Botón "AGREGAR PROVEEDOR"**: Posicionado **centrado** en la parte superior → redirige a formulario de creación
+  - **Información mostrada**: 
+    - Header: Nombre del proveedor
+    - Body: Correo, teléfono, país (cada campo con etiqueta y formato estructurado)
+  - **Botones editar/eliminar**: Parte inferior de cada tarjeta, completamente funcionales
+  - **Estado sin proveedores**: Componente de estado vacío centrado con opción para agregar primer proveedor
 
 ### Funcionalidad de Botones CRUD (Requisito Crítico)
 
@@ -216,7 +230,7 @@ uv add Pillow  # para soporte de ImageField
 ## Configuración de Migración y Base de Datos
 1. Crear base de datos PostgreSQL `practicatpe2`
 2. Crear usuario de base de datos con credenciales especificadas
-3. Ejecutar migraciones de Django para crear tablas: `python manage.py makemigrations` y `python manage.py migrate`
+3. Ejecutar migraciones de Django para crear tablas: `uv run python manage.py makemigrations` y `uv run python manage.py migrate`
 4. Asegurar conectividad apropiada de base de datos
 5. **Requisito previo**: Tener instalado el motor de base de datos PostgreSQL
 
@@ -235,124 +249,5 @@ uv add Pillow  # para soporte de ImageField
 - **Patrón de diseño**: Implementar correctamente el patrón MVC de Django
 - **Contenido visual**: Las imágenes y diseño deben reflejar la estética propia de la {{ tipo_tienda }}
 
-# Python Coding Guidelines (Updated 2025)
-
-**Validated by parallel AI research - Current as of Python 3.13+**
-
-## **Code Architecture Guidelines**
-
-### **Modularity Rules**
-- **File length**: 500 lines as **review trigger** (not hard limit) - focus on single responsibility
-- **Function length**: Maximum 50 lines per function - ideal 5-20 lines for readability
-- **Single responsibility**: Each module and function should have one clear purpose
-- **Performance slots**: Use `@dataclass(slots=True)` for memory optimization in Python 3.10+
-
-### **Functional Over Imperative**
-- **Use `itertools`**: Leverage `chain()`, `groupby()`, `filter()`, `map()` for data processing
-- **Use `functools`**: Apply `reduce()`, `partial()`, `lru_cache()` for function composition
-- **Focus on "what" not "how"**: Express intent through function names and composition
-
-```python
-# ❌ Avoid - Imperative approach
-def process_users(users):
-    active_users = []
-    for user in users:
-        if user.is_active:
-            active_users.append(user)
-    
-    sorted_users = []
-    for user in active_users:
-        sorted_users.append((user.name.upper(), user.age))
-    
-    return sorted(sorted_users)
-
-# ✅ Use - Functional approach
-from functools import partial
-from itertools import filterfalse
-
-def process_users(users):
-    return sorted(
-        (user.name.upper(), user.age) 
-        for user in users 
-        if user.is_active
-    )
-```
-
-### **Core Philosophy**
-- **Fewer lines = less maintenance**: Prioritize concise, readable solutions
-- **Composition over repetition**: Build complex behavior from simple functions
-- **Declarative over procedural**: Express what you want, not step-by-step how
-
-## **Complete AI Agent Ruleset**
-
-### **Mandatory Modern Features (Python 3.13+)**
-- Data classes with `@dataclass(slots=True)` for performance
-- Built-in generics (`list[str]` not `List[str]`) - required for Python 3.9+
-- `functools.cache` instead of `lru_cache(maxsize=None)`
-- Type hints on **ALL** functions with strict MyPy configuration
-- `Self` type for method returns (Python 3.11+)
-- `Override` decorator for method overrides (Python 3.12+)
-
-### **Conciseness Rules**
-- Walrus operator for assign-and-use patterns
-- Comprehensions over explicit loops
-- Match-case for pattern matching (3+ cases)
-- Argument unpacking with `*args`/`**kwargs`
-
-### **Architecture Rules**
-- Files under 500 lines, functions under 50 lines
-- Functional approach using `itertools`/`functools`
-- Composition and modularity over monolithic code
-
-**Target**: Minimal, maintainable code that leverages Python's modern capabilities for maximum developer productivity.
-
-## **Modern Development Tools (2025)**
-
-### **Unified Tooling**
-- **Ruff**: Single tool for linting and formatting (replaces flake8, isort, black)
-- **UV**: Fast package manager (replaces pip/poetry for many use cases)
-- **Pre-commit hooks**: Automated code quality checks
-- **pyproject.toml**: Complete project configuration (no setup.py)
-
-### **Type Checking Evolution**
-- **Strict MyPy**: Use `--strict` mode for maximum type safety
-- **Pyright**: Alternative type checker gaining popularity
-- **Runtime validation**: Beartype or Pydantic for runtime type checking
-
-### **Performance Patterns**
-- **Async concurrency**: `asyncio.TaskGroup` for structured concurrency
-- **Memory optimization**: Profile with `tracemalloc` and `memory_profiler`
-- **Lazy evaluation**: Generator expressions and `functools.partial`
-
-## **Django-Specific Guidelines (Django 5.2+)**
-
-### **Model Design**
-- Use `@dataclass(slots=True)` for non-ORM data structures
-- Model managers for reusable query logic
-- Business logic in **service functions** (not model methods)
-- Model constraints with `Meta.constraints` for data integrity
-- Always call `full_clean()` before saving for validation
-
-### **View Architecture**
-- Class-based views for CRUD operations
-- Service layer for complex business logic
-- Mixins for shared functionality
-- Focus on single responsibility over line count limits
-
-### **Modern Testing**
-- `TestCase.setUpTestData()` instead of fixtures for performance
-- `assertNumQueries()` for database query testing
-- Service layer unit tests separate from view tests
-- `isolate_apps` decorator for model testing
-
-### **Performance Optimization**
-- `select_related()` for forward ForeignKey relationships
-- `prefetch_related()` for reverse/ManyToMany relationships
-- Database-level constraints and indexes
-- Query optimization with `django-debug-toolbar`
-
-### **Form & API Patterns**
-- ModelForms with proper validation in `clean()` methods
-- FormView patterns for complex form handling
-- Django REST Framework for API endpoints
-- Custom ValidationError with proper error codes
+## Referencias de Desarrollo
+- **Guías de Código Python**: Ver [docs/python-guidelines.md](python-guidelines.md) para estándares de desarrollo y mejores prácticas con Python 3.13+ y Django 5.2+
