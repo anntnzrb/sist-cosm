@@ -324,7 +324,7 @@ class EndToEndIntegrationTest(TestCase):
         # Check FontAwesome icons on pages that use them (not home page after refactoring)
         pages_with_icons = [
             reverse("productos:list"),
-            reverse("trabajadores:list"), 
+            reverse("trabajadores:list"),
             reverse("proveedores:list"),
         ]
 
