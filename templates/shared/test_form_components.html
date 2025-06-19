@@ -1,0 +1,35 @@
+{% extends 'shared/form_base.html' %}
+
+{% comment %}
+Test template for form components - demonstrating usage of all shared form components
+This shows how the new components would be used to replace existing form templates
+{% endcomment %}
+
+{% block form_title %}Test Form Components - Cosmetics Store{% endblock %}
+{% block page_icon %}fas fa-flask{% endblock %}
+{% block page_title %}TEST FORM COMPONENTS{% endblock %}
+{% block page_description %}Testing the new reusable form components{% endblock %}
+
+{% block form_fields %}
+    {# Basic form field usage #}
+    {% include 'shared/form_field.html' with field=form.nombre icon='fas fa-palette' color='text-cosmetics-pink' %}
+    
+    {# Form field with help text #}
+    {% include 'shared/form_field.html' with field=form.descripcion icon='fas fa-align-left' color='text-cosmetics-gold' help_text='Descripción detallada del producto' %}
+    
+    {# Row with multiple fields #}
+    <div class="row">
+        <div class="col-md-6">
+            {% include 'shared/form_field.html' with field=form.precio icon='fas fa-dollar-sign' color='text-cosmetics-rose-gold' width='mb-3' %}
+        </div>
+        <div class="col-md-6">
+            {% include 'shared/form_field.html' with field=form.iva icon='fas fa-percent' color='text-cosmetics-charcoal' width='mb-3' %}
+        </div>
+    </div>
+    
+    {# Image field component #}
+    {% include 'shared/image_field.html' with field=form.imagen object=object %}
+{% endblock %}
+
+{% block submit_text %}Test Save{% endblock %}
+{% block cancel_url %}{% url 'productos:list' %}{% endblock %}

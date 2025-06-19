@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% comment %}
+Form Base Template - Reusable base template for forms
+
+Blocks to override:
+- form_title: Page title for the HTML <title> tag
+- page_icon: FontAwesome icon class for the page header (e.g., "fas fa-plus-circle")
+- page_title: Main heading text for the page
+- page_description: Subtitle/description text below the main heading
+- form_width: Bootstrap column class for form width (default: "col-md-8")
+- form_attrs: Additional form attributes (e.g., for specific validation)
+- form_fields: The form fields content
+- submit_text: Text for the submit button (e.g., "Guardar Producto")
+- cancel_url: URL for the cancel button
+
+Example usage in child template:
+{% extends 'shared/form_base.html' %}
+
+{% block form_title %}Agregar Producto - Cosmetics Store{% endblock %}
+{% block page_icon %}fas fa-plus-circle{% endblock %}
+{% block page_title %}AGREGAR PRODUCTO{% endblock %}
+{% block page_description %}Añade un nuevo producto cosmético a nuestra colección{% endblock %}
+
+{% block form_fields %}
+    {% include 'shared/form_field.html' with field=form.nombre icon='fas fa-palette' color='text-cosmetics-pink' %}
+    {% include 'shared/form_field.html' with field=form.descripcion icon='fas fa-align-left' color='text-cosmetics-gold' %}
+{% endblock %}
+
+{% block submit_text %}Guardar Producto{% endblock %}
+{% block cancel_url %}{% url 'productos:list' %}{% endblock %}
+{% endcomment %}
+
+{% block title %}{% block form_title %}{% endblock %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="{% block page_icon %}{% endblock %} me-3"></i>{% block page_title %}{% endblock %}</h1>
+    <p>{% block page_description %}{% endblock %}</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="{% block form_width %}col-md-8{% endblock %}">
+        <div class="form-cosmetic">
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate{% block form_attrs %}{% endblock %}>
+                {% csrf_token %}
+                
+                {% block form_fields %}
+                {% endblock %}
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3">
+                        <i class="fas fa-save me-2"></i>{% block submit_text %}Guardar{% endblock %}
+                    </button>
+                    <a href="{% block cancel_url %}#{% endblock %}" class="btn btn-cosmetics-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
