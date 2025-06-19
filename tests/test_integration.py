@@ -317,10 +317,20 @@ class EndToEndIntegrationTest(TestCase):
             # Check for cosmetics branding elements
             self.assertContains(response, "Cosmetics Store")
             self.assertContains(response, "cosmetics-theme.css")
-            self.assertContains(response, "fa-")  # FontAwesome icons
 
             # Check for Bootstrap framework
             self.assertContains(response, "bootstrap")
+
+        # Check FontAwesome icons on pages that use them (not home page after refactoring)
+        pages_with_icons = [
+            reverse("productos:list"),
+            reverse("trabajadores:list"), 
+            reverse("proveedores:list"),
+        ]
+
+        for url in pages_with_icons:
+            response = self.client.get(url)
+            self.assertContains(response, "fa-")  # FontAwesome icons
 
     def test_error_handling_and_edge_cases(self):
         """Test error handling and edge cases"""
