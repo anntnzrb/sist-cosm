@@ -1,147 +1,43 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'shared/form_base.html' %}
 
 {% block title %}Editar Información de Empresa - Cosmetics Store{% endblock %}
 
-{% block content %}
-<div class="page-header">
-    <h1><i class="fas fa-building me-3"></i>EDITAR INFORMACIÓN DE LA EMPRESA</h1>
-    <p>Actualice los datos de {{ object.nombre }}</p>
-</div>
+{% block form_icon %}fas fa-building{% endblock %}
+{% block form_title %}EDITAR INFORMACIÓN DE LA EMPRESA{% endblock %}
+{% block form_description %}Actualice los datos de {{ object.nombre }}{% endblock %}
 
-<div class="row justify-content-center">
-    <div class="col-md-10">
-        <div class="form-cosmetic">
-            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-                {% csrf_token %}
-                
-                <div class="row">
-                    <div class="col-md-8 mb-3">
-                        <label for="{{ form.nombre.id_for_label }}" class="form-label">
-                            <i class="fas fa-building me-2 text-cosmetics-pink"></i>{{ form.nombre.label }}
-                        </label>
-                        {{ form.nombre }}
-                        {% if form.nombre.errors %}
-                            <div class="text-danger mt-1">
-                                {% for error in form.nombre.errors %}
-                                    <small>{{ error }}</small><br>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <label for="{{ form.anio_fundacion.id_for_label }}" class="form-label">
-                            <i class="fas fa-calendar-alt me-2 text-cosmetics-gold"></i>{{ form.anio_fundacion.label }}
-                        </label>
-                        {{ form.anio_fundacion }}
-                        {% if form.anio_fundacion.errors %}
-                            <div class="text-danger mt-1">
-                                {% for error in form.anio_fundacion.errors %}
-                                    <small>{{ error }}</small><br>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-8 mb-3">
-                        <label for="{{ form.direccion.id_for_label }}" class="form-label">
-                            <i class="fas fa-map-marker-alt me-2 text-cosmetics-rose-gold"></i>{{ form.direccion.label }}
-                        </label>
-                        {{ form.direccion }}
-                        {% if form.direccion.errors %}
-                            <div class="text-danger mt-1">
-                                {% for error in form.direccion.errors %}
-                                    <small>{{ error }}</small><br>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <label for="{{ form.ruc.id_for_label }}" class="form-label">
-                            <i class="fas fa-id-card me-2 text-cosmetics-charcoal"></i>{{ form.ruc.label }}
-                        </label>
-                        {{ form.ruc }}
-                        {% if form.ruc.errors %}
-                            <div class="text-danger mt-1">
-                                {% for error in form.ruc.errors %}
-                                    <small>{{ error }}</small><br>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="mb-4">
-                    <label for="{{ form.mision.id_for_label }}" class="form-label">
-                        <i class="fas fa-bullseye me-2 text-cosmetics-pink"></i>{{ form.mision.label }}
-                    </label>
-                    {{ form.mision }}
-                    <div class="form-text">Describa el propósito y los objetivos principales de su empresa de cosméticos</div>
-                    {% if form.mision.errors %}
-                        <div class="text-danger mt-1">
-                            {% for error in form.mision.errors %}
-                                <small>{{ error }}</small><br>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="mb-4">
-                    <label for="{{ form.vision.id_for_label }}" class="form-label">
-                        <i class="fas fa-eye me-2 text-cosmetics-gold"></i>{{ form.vision.label }}
-                    </label>
-                    {{ form.vision }}
-                    <div class="form-text">Describa hacia dónde se dirige su empresa en el futuro de la belleza</div>
-                    {% if form.vision.errors %}
-                        <div class="text-danger mt-1">
-                            {% for error in form.vision.errors %}
-                                <small>{{ error }}</small><br>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="mb-4">
-                    <label for="{{ form.imagen.id_for_label }}" class="form-label">
-                        <i class="fas fa-camera me-2 text-cosmetics-rose-gold"></i>{{ form.imagen.label }}
-                    </label>
-                    
-                    {% if object.imagen %}
-                        <div class="mb-2">
-                            <img src="{{ object.imagen.url }}" alt="Logo actual" class="img-thumbnail" style="max-width: 200px;">
-                            <small class="text-muted d-block">Logo actual</small>
-                        </div>
-                    {% endif %}
-                    
-                    {{ form.imagen }}
-                    <div class="form-text">Logo o imagen corporativa. Formatos aceptados: JPG, PNG, GIF. Tamaño máximo: 5MB</div>
-                    {% if form.imagen.errors %}
-                        <div class="text-danger mt-1">
-                            {% for error in form.imagen.errors %}
-                                <small>{{ error }}</small><br>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="text-center">
-                    <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3" title="Actualizar Información">
-                        <i class="fas fa-save"></i>
-                    </button>
-                    <a href="{% url 'empresa:detail' %}" class="btn btn-cosmetics-secondary btn-lg me-3" title="Cancelar">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                    <a href="{% url 'empresa:delete' %}" class="btn btn-danger btn-lg" title="Eliminar Información">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </div>
-            </form>
-        </div>
+{% block form_col_class %}col-md-10{% endblock %}
+{% block form_attrs %}enctype="multipart/form-data" class="needs-validation" novalidate{% endblock %}
+
+{% block form_fields %}
+    <div class="row">
+        {% include 'shared/form_field.html' with field=form.nombre icon="fas fa-building" color="text-cosmetics-pink" col_class="col-md-8 mb-3" %}
+        {% include 'shared/form_field.html' with field=form.anio_fundacion icon="fas fa-calendar-alt" color="text-cosmetics-gold" col_class="col-md-4 mb-3" %}
     </div>
-</div>
-
+    
+    <div class="row">
+        {% include 'shared/form_field.html' with field=form.direccion icon="fas fa-map-marker-alt" color="text-cosmetics-rose-gold" col_class="col-md-8 mb-3" %}
+        {% include 'shared/form_field.html' with field=form.ruc icon="fas fa-id-card" color="text-cosmetics-charcoal" col_class="col-md-4 mb-3" %}
+    </div>
+    
+    {% include 'shared/form_field.html' with field=form.mision icon="fas fa-bullseye" color="text-cosmetics-pink" col_class="mb-4" help_text="Describa el propósito y los objetivos principales de su empresa de cosméticos" %}
+    
+    {% include 'shared/form_field.html' with field=form.vision icon="fas fa-eye" color="text-cosmetics-gold" col_class="mb-4" help_text="Describa hacia dónde se dirige su empresa en el futuro de la belleza" %}
+    
+    {% include 'shared/image_field.html' with field=form.imagen object=object help_text="Logo o imagen corporativa. Formatos aceptados: JPG, PNG, GIF. Tamaño máximo: 5MB" %}
+    
+    <div class="text-center">
+        <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3" title="Actualizar Información">
+            <i class="fas fa-save"></i>
+        </button>
+        <a href="{% url 'empresa:detail' %}" class="btn btn-cosmetics-secondary btn-lg me-3" title="Cancelar">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <a href="{% url 'empresa:delete' %}" class="btn btn-danger btn-lg" title="Eliminar Información">
+            <i class="fas fa-trash"></i>
+        </a>
+    </div>
 {% endblock %}
+
+{% block submit_text %}{% endblock %}
+{% block cancel_url %}{% endblock %}
