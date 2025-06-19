@@ -1,116 +1,25 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'shared/form_base.html' %}
 
 {% block title %}Editar Proveedor - Cosmetics Store{% endblock %}
 
-{% block content %}
-<div class="page-header">
-    <h1><i class="fas fa-edit me-3"></i>EDITAR PROVEEDOR</h1>
-    <p>Actualiza la información de {{ object.nombre }}</p>
-</div>
+{% block form_icon %}fas fa-edit{% endblock %}
+{% block form_title %}EDITAR PROVEEDOR{% endblock %}
+{% block form_description %}Actualiza la información de {{ object.nombre }}{% endblock %}
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="form-cosmetic">
-            <form method="post" class="needs-validation" novalidate>
-                {% csrf_token %}
-                
-                <div class="mb-3">
-                    <label for="{{ form.nombre.id_for_label }}" class="form-label">
-                        <i class="fas fa-building me-2 text-cosmetics-pink"></i>{{ form.nombre.label }}
-                    </label>
-                    {{ form.nombre }}
-                    {% if form.nombre.errors %}
-                        <div class="text-danger mt-1">
-                            {% for error in form.nombre.errors %}
-                                <small>{{ error }}</small><br>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.descripcion.id_for_label }}" class="form-label">
-                        <i class="fas fa-align-left me-2 text-cosmetics-gold"></i>{{ form.descripcion.label }}
-                    </label>
-                    {{ form.descripcion }}
-                    {% if form.descripcion.errors %}
-                        <div class="text-danger mt-1">
-                            {% for error in form.descripcion.errors %}
-                                <small>{{ error }}</small><br>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="{{ form.correo.id_for_label }}" class="form-label">
-                            <i class="fas fa-envelope me-2 text-cosmetics-rose-gold"></i>{{ form.correo.label }}
-                        </label>
-                        {{ form.correo }}
-                        {% if form.correo.errors %}
-                            <div class="text-danger mt-1">
-                                {% for error in form.correo.errors %}
-                                    <small>{{ error }}</small><br>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="col-md-6 mb-3">
-                        <label for="{{ form.telefono.id_for_label }}" class="form-label">
-                            <i class="fas fa-phone me-2 text-cosmetics-charcoal"></i>{{ form.telefono.label }}
-                        </label>
-                        {{ form.telefono }}
-                        {% if form.telefono.errors %}
-                            <div class="text-danger mt-1">
-                                {% for error in form.telefono.errors %}
-                                    <small>{{ error }}</small><br>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="{{ form.pais.id_for_label }}" class="form-label">
-                        <i class="fas fa-globe me-2 text-cosmetics-pink"></i>{{ form.pais.label }}
-                    </label>
-                    {{ form.pais }}
-                    {% if form.pais.errors %}
-                        <div class="text-danger mt-1">
-                            {% for error in form.pais.errors %}
-                                <small>{{ error }}</small><br>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="mb-4">
-                    <label for="{{ form.direccion.id_for_label }}" class="form-label">
-                        <i class="fas fa-map-marker-alt me-2 text-cosmetics-gold"></i>{{ form.direccion.label }}
-                    </label>
-                    {{ form.direccion }}
-                    {% if form.direccion.errors %}
-                        <div class="text-danger mt-1">
-                            {% for error in form.direccion.errors %}
-                                <small>{{ error }}</small><br>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                
-                <div class="text-center">
-                    <button type="submit" class="btn btn-cosmetics-primary btn-lg me-3">
-                        <i class="fas fa-save me-2"></i>Actualizar Proveedor
-                    </button>
-                    <a href="{% url 'proveedores:list' %}" class="btn btn-cosmetics-secondary btn-lg">
-                        <i class="fas fa-arrow-left me-2"></i>Cancelar
-                    </a>
-                </div>
-            </form>
-        </div>
+{% block form_fields %}
+    {% include 'shared/form_field.html' with field=form.nombre icon="fas fa-building" color="text-cosmetics-pink" %}
+    
+    {% include 'shared/form_field.html' with field=form.descripcion icon="fas fa-align-left" color="text-cosmetics-gold" %}
+    
+    <div class="row">
+        {% include 'shared/form_field.html' with field=form.correo icon="fas fa-envelope" color="text-cosmetics-rose-gold" col_class="col-md-6 mb-3" %}
+        {% include 'shared/form_field.html' with field=form.telefono icon="fas fa-phone" color="text-cosmetics-charcoal" col_class="col-md-6 mb-3" %}
     </div>
-</div>
+    
+    {% include 'shared/form_field.html' with field=form.pais icon="fas fa-globe" color="text-cosmetics-pink" %}
+    
+    {% include 'shared/form_field.html' with field=form.direccion icon="fas fa-map-marker-alt" color="text-cosmetics-gold" col_class="mb-4" %}
 {% endblock %}
+
+{% block submit_text %}Actualizar Proveedor{% endblock %}
+{% block cancel_url %}{% url 'proveedores:list' %}{% endblock %}
