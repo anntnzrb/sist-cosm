@@ -9,6 +9,8 @@ fecha: "2025"
 ## Descripción General del Proyecto
 Desarrollar una aplicación web completa para una **{{ tipo_tienda }}** usando el framework Django con integración a base de datos PostgreSQL, implementando el patrón de diseño MVC (Modelo-Vista-Controlador) en Python con operaciones CRUD completas para múltiples entidades de negocio.
 
+**IMPORTANTE: Este documento debe ser seguido estrictamente. No se requiere la implementación de componentes adicionales como nginx, servidores web externos, contenedores Docker para producción, o cualquier tecnología no especificada explícitamente en este PRD. El proyecto debe limitarse únicamente a las especificaciones aquí descritas.**
+
 ## Stack Tecnológico
 - **Python**: 3.13
 - **Framework**: Django 5.2.2
